@@ -31,7 +31,6 @@ public class Fenetre extends JFrame {
         //this.setExtendedState(this.MAXIMIZED_BOTH); 
       
         this.getContentPane().add(leDesign.initialisation());
-       
         this.setVisible(true); 
         this.setResizable(true);
         
