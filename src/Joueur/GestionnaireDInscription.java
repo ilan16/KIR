@@ -8,11 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import projetcommun.Test;
 
 public class GestionnaireDInscription {
 
@@ -34,7 +29,7 @@ public class GestionnaireDInscription {
             this.con = DriverManager.getConnection(doa.getURL(), doa.getUser(), doa.getPassword());
         }
     }
-    
+
     public GestionnaireDInscription(String url, String user, String pwd) throws SQLException {
         this.doa = new DOA(url, user, pwd);
         if (this.doa.connexion()) {
@@ -44,20 +39,19 @@ public class GestionnaireDInscription {
 
     public boolean inscriptionPersonne() {
         System.out.println("d");
-        if (this.verifierNom() && this.verifierPrenom() && this.verifierAdresse() && this.verifierTel()) {
-            String query = "INSERT INTO personne (nom,prenom,adresse,sexe,tel) VALUES ('" + this.inscription.getNom() + "','" + this.inscription.getPrenom() + "','" + this.inscription.getAdresse() + "'," + this.inscription.getSexe() + ",'" + this.inscription.getTel() + "')";
-            System.out.println("etape 1");
-            try {
-                System.out.println("etape 2r");
-                Statement requete = con.createStatement();
-                System.out.println("etape 2rprme");
-                requete.executeUpdate(query);
-                System.out.println("etape 3r");
-            } catch (Exception e1) {
-                System.out.println("etape 2m");
-                e1.printStackTrace();
-            }
+
+        String query = "INSERT INTO personne (nom,prenom,adresse,sexe,tel) VALUES ('" + this.inscription.getNom() + "','" + this.inscription.getPrenom() + "','" + this.inscription.getAdresse() + "'," + this.inscription.getSexe() + ",'" + this.inscription.getTel() + "')";
+        System.out.println("etape 1");
+        try {
+            System.out.println("etape 2r");
+            Statement requete = con.createStatement();
+            System.out.println("etape 2rprme");
+            requete.executeUpdate(query);
+            System.out.println("etape 3r");
             return true;
+        } catch (Exception e1) {
+            System.out.println("etape 2m");
+            e1.printStackTrace();
         }
         System.out.println("etape merdique");
         return false;
@@ -79,33 +73,32 @@ public class GestionnaireDInscription {
     }
 
     public boolean inscriptionJoueur() {
-        if (this.verifierMail()&& this.verifierPassword() && this.verifierPasswordConf() && this.equals()) {
-            String query = "INSERT INTO joueur (pseudo, mail, password, id_personne) "
-                    + "VALUES ('" + this.inscription.getPseudo() + "','" + this.inscription.getMail() + "','" + this.inscription.getPassword() + "'," + this.recupDernierId() + ")";
-            System.out.println("etape 1");
-            try {
-                Statement requete = con.createStatement();
-                requete.executeUpdate(query);
-            } catch (Exception e1) {
-                e1.printStackTrace();
-            }
+        String query = "INSERT INTO joueur (pseudo, mail, password, id_personne) "
+                + "VALUES ('" + this.inscription.getPseudo() + "','" + this.inscription.getMail() + "','" + this.inscription.getPassword() + "'," + this.recupDernierId() + ")";
+        System.out.println("etape 1");
+        try {
+            Statement requete = con.createStatement();
+            requete.executeUpdate(query);
             return true;
+        } catch (Exception e1) {
+            e1.printStackTrace();
         }
+
         System.out.println("etape merdique");
         return false;
     }
 
-    public boolean verifierNom() {
+    public boolean verifierNom(String nom) {
         System.out.println("nom");
-        if (this.inscription.getNom().matches(this.chaine)) {
+        if (nom.matches(this.chaine)) {
             return true;
         }
         return false;
     }
 
-    public boolean verifierPrenom() {
+    public boolean verifierPrenom(String prenom) {
         System.out.println("prenom");
-        if (this.inscription.getPrenom().matches(this.chaine)) {
+        if (prenom.matches(this.chaine)) {
             return true;
         }
         return false;
@@ -116,58 +109,58 @@ public class GestionnaireDInscription {
         throw new UnsupportedOperationException();
     }
 
-    public boolean verifierAdresse() {
+    public boolean verifierAdresse(String adresse) {
         System.out.println("ADRESSE");
-        if (this.inscription.getAdresse().matches(this.tout)) {
+        if (adresse.matches(this.tout)) {
             return true;
         }
         return false;
     }
 
-    public boolean verifierTel() {
+    public boolean verifierTel(String tel) {
         System.out.println("tel");
-        if (this.inscription.getTel().length() != 10) {
+        if (tel.length() != 10) {
             return false;
         }
-        if (this.inscription.getTel().matches(this.chiffre)) {
+        if (tel.matches(this.chiffre)) {
             return true;
         }
         return false;
     }
 
-    public boolean verifierPassword() {
-        if (this.inscription.getPassword().length() < 6 || this.inscription.getPassword().length() > 16) {
+    public boolean verifierPassword(String pwd) {
+        if (pwd.length() < 6 || pwd.length() > 16) {
             return false;
         }
-        if (this.inscription.getPassword().matches(this.tout)) {
+        if (pwd.matches(this.tout)) {
             return true;
         }
         return false;
     }
 
-    public boolean verifierPasswordConf() {
-        if (this.inscription.getPassword().length() < 6 || this.inscription.getPassword().length() > 16) {
+    public boolean verifierPasswordConf(String pwd) {
+        if (pwd.length() < 6 || pwd.length() > 16) {
             return false;
         } else {
         }
-        if (this.inscription.getPassword().matches(this.tout)) {
+        if (pwd.matches(this.tout)) {
             return true;
         }
         return false;
     }
 
-    public boolean verifierPseudo() {
-        if (this.inscription.getPseudo().length() > 10) {
+    public boolean verifierPseudo(String pseudo) {
+        if (pseudo.length() > 10) {
             return false;
         }
-        if (this.inscription.getPseudo().matches(this.tout)) {
+        if (pseudo.matches(this.tout)) {
             return true;
         }
         return false;
     }
 
-    public boolean verifierMail() {
-        if (this.inscription.getMail().matches(this.mail)) {
+    public boolean verifierMail(String mail) {
+        if (mail.matches(this.mail)) {
             return true;
         }
         return false;
@@ -177,9 +170,9 @@ public class GestionnaireDInscription {
      *
      * @param password
      */
-    public boolean equals() {
-        if (this.verifierPassword() && this.verifierPasswordConf()) {
-            if (inscription.getPassword().equals(inscription.getPasswordConf())) {
+    public boolean equals(String pwd, String pwdc) {
+        if (this.verifierPassword(pwd) && this.verifierPasswordConf(pwdc)) {
+            if (pwd.equals(pwdc)) {
                 return true;
             }
         }
