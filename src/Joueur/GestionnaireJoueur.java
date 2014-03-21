@@ -126,11 +126,11 @@ public class GestionnaireJoueur {
             int diff = 0;
             if (monNiveau(nv, pseudo)) {
                 diff = score2;
-                query= "INSERT INTO score (id_partie,pseudo,score) VALUES (" + nv + ",'" + pseudo + "'," + score2 + ")";
+                query = "INSERT INTO score (id_partie,pseudo,score) VALUES (" + nv + ",'" + pseudo + "'," + score2 + ")";
             } else if (scoreNv(nv, pseudo) < score2) {
                 diff = score2 - scoreNv(nv, pseudo);
                 query = "UPDATE score SET score = " + score2 + " WHERE pseudo = '" + pseudo + "' and id_partie=" + nv + "";
-            }else{
+            } else {
                 return false;
             }
             String query2 = "UPDATE joueur SET score = " + (getScoreFinal(pseudo) + diff) + " WHERE pseudo = '" + pseudo + "'";
@@ -271,7 +271,7 @@ public class GestionnaireJoueur {
             }
         }
     }
-    
+
     public void nvSuivant(String pseudo) {
         if (demandeExistance(pseudo)) {
             int monNv = getNv(pseudo);
@@ -295,4 +295,24 @@ public class GestionnaireJoueur {
         return false;
     }
 
+    public int[] recupererTemp(int nv) {
+        int[] ti = new int[3];
+        String query = "SELECT tps1,tps2,tps3 FROM partie WHERE id_partie = '" + nv + "'";
+        try {
+            Statement requete = con.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            ResultSet result1 = requete.executeQuery(query);
+            while (result1.next()) {
+                ti[1] = result1.getInt(1);
+                ti[2] = result1.getInt(2);
+                ti[3] = result1.getInt(3);
+            }
+            return ti;
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return ti;
+    }
+    
+        
 }
+

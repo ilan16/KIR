@@ -1,10 +1,12 @@
 package Jeu;
 
+import Joueur.GestionnaireJoueur;
 import OpFichier.EcrireFichier;
 import OpFichier.LireFichier;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
@@ -115,6 +117,28 @@ public abstract class Jeu {
         }
     }
     
+        public String recupererReponse(){
+        return null;
+    }
     
+    public boolean resultatAfficherResultat(int nv){
+        return false;
+    }
+    
+     public boolean resultatCompleter(int nv){
+        return false;
+    }
+     
+     public boolean ajouterPointAfficher(int nv,String pseudo) throws SQLException{
+         if(resultatAfficherResultat(nv)){
+             GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
+             j.nvSuivant(pseudo);
+             int score2=0;
+             
+             j.newScore(nv, pseudo, nv);
+             
+         }
+        return false;
+     }
 
 }
