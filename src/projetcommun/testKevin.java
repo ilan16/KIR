@@ -49,8 +49,8 @@ public class testKevin {
 //           Information i=j.demandeInformation("kvn0026");
 //           System.out.println(i.getNbconnecte());
 //           System.out.println(j.newScore(2, "kvn0026", 50));
-           j.nvSuivant("azerty");
-        
+//           j.nvSuivant("azerty");
+
 //            Jeu j =new Jeu() {};
 //            j.AfficherZoneRep(0);
     }

@@ -272,8 +272,8 @@ public class GestionnaireJoueur {
         }
     }
 
-    public void nvSuivant(String pseudo) {
-        if (demandeExistance(pseudo)) {
+    public void nvSuivant(String pseudo,int nv) {
+        if (monNiveau(nv,pseudo)) {
             int monNv = getNv(pseudo);
             String query = "UPDATE joueur SET id_partie = " + (monNv + 1) + " WHERE pseudo = '" + pseudo + "'";
             try {
@@ -302,9 +302,9 @@ public class GestionnaireJoueur {
             Statement requete = con.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             ResultSet result1 = requete.executeQuery(query);
             while (result1.next()) {
-                ti[1] = result1.getInt(1);
-                ti[2] = result1.getInt(2);
-                ti[3] = result1.getInt(3);
+                ti[0] = result1.getInt(1);
+                ti[1] = result1.getInt(2);
+                ti[2] = result1.getInt(3);
             }
             return ti;
         } catch (Exception e1) {
@@ -315,4 +315,3 @@ public class GestionnaireJoueur {
     
         
 }
-

@@ -129,14 +129,23 @@ public abstract class Jeu {
         return false;
     }
      
-     public boolean ajouterPointAfficher(int nv,String pseudo) throws SQLException{
+     public boolean ajouterPointAfficher(int nv,String pseudo,int temp) throws SQLException{
          if(resultatAfficherResultat(nv)){
              GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
-             j.nvSuivant(pseudo);
              int score2=0;
-             
-             j.newScore(nv, pseudo, nv);
-             
+             int [] interval=j.recupererTemp(nv);
+             if(temp<= interval[0]){
+                 score2=150;
+             }else if(temp<= interval[1]){
+                 score2=100;
+             }else if(temp<= interval[2]){
+                 score2=75;
+             }else{
+                 score2=50;
+             }
+             j.newScore(nv, pseudo,score2);
+             j.nvSuivant(pseudo,nv);
+             return true;
          }
         return false;
      }
