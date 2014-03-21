@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 public class Fenetre extends JFrame {
     
     MenuPrincipal leDesign = new MenuPrincipal();
-    InscriptionPersonne ins = new InscriptionPersonne();
+    InscriptionPersonneDesign ins = new InscriptionPersonneDesign();
     
     public Fenetre(String text) throws SQLException, Exception{
         
@@ -32,7 +32,7 @@ public class Fenetre extends JFrame {
         //this.setExtendedState(this.MAXIMIZED_BOTH); 
       
         //this.getContentPane().add(leDesign.initialisation());
-       this.getContentPane().add(this.ins.initialisation());
+        this.getContentPane().add(this.ins.initialisation());
         this.setVisible(true); 
     }    
 

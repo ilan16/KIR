@@ -22,6 +22,8 @@ import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -37,15 +39,16 @@ import javax.swing.JTextField;
  *
  * @author ilanmalka
  */
-public class InscriptionPersonne extends Applet implements Observateur {
+public class InscriptionPersonneDesign extends Applet implements Observateur {
 
     private ImagePanel monPanel;
     private JButton contenuDate;
+    private boolean sexe;
     private JDateChooser calendrier;
     private GestionnaireDInscription gestionnaire;
     private boolean[] verification;
 
-    public InscriptionPersonne() throws SQLException {
+    public InscriptionPersonneDesign() throws SQLException {
         this.monPanel = new ImagePanel("fondJeu.png");
         this.calendrier = new JDateChooser();
         this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
@@ -67,8 +70,7 @@ public class InscriptionPersonne extends Applet implements Observateur {
         }
 
 
-        ImagePanel champsInscription = new ImagePanel("contenuIns.png");
-        champsInscription.setBackground(Color.red);
+        final ImagePanel champsInscription = new ImagePanel("contenuIns.png");
         champsInscription.setLayout((new BoxLayout(champsInscription, BoxLayout.PAGE_AXIS)));
         champsInscription.setPreferredSize(new Dimension(400, 500));
 
@@ -274,17 +276,19 @@ public class InscriptionPersonne extends Applet implements Observateur {
 
         // SEXE
 
-        JLabel sexe = new JLabel("Sexe: ");
+        final JLabel sexeLabel = new JLabel("Sexe: ");
         JRadioButton homme = new JRadioButton("Homme");
+        homme.setOpaque(false);
         JRadioButton femme = new JRadioButton("Femme");
+        femme.setOpaque(false);
 
         JPanel panelSexe = new JPanel();
         panelSexe.setOpaque(false);
-        panelSexe.add(sexe);
+        panelSexe.add(sexeLabel);
         panelSexe.add(homme);
         panelSexe.add(femme);
 
-        homme.setSelected(true);
+        //homme.setSelected(true);
 
         ButtonGroup bg = new ButtonGroup();
         bg.add(homme);
@@ -317,18 +321,29 @@ public class InscriptionPersonne extends Applet implements Observateur {
 
         //BOUTON
 
-        final JButton validation = new JButton("Valider");
+        final JButton validation = new JButton("Passez à l'étape suivante");
         champsInscription.add(validation);
-        
-        validation.addActionListener(new ActionListener() {
 
+        validation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(int i = 0; i< verification.length ; i++){
-                    if(verification[i] == false){
-                        
+                for (int i = 0; i < verification.length; i++) {
+                    if (verification[i] == false) {
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Il y a une erreur dans la saisie " + (i + 1), "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         break;
                     }
+                }
+                if (verification[0] && verification[1] && verification[2] && verification[3]) {
+                    gestionnaire.inscriptionPersonne(contenuNom.getText(), contenuPrenom.getText(), contenuAdresse.getText(), sexe, contenuTel.getText());
+                    champsInscription.removeAll();
+                    try {
+                        final InscriptionJoueurDesign joueur = new InscriptionJoueurDesign();
+                        champsInscription.add(joueur.initialisation());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InscriptionPersonneDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                 }
             }
         });
@@ -368,6 +383,11 @@ public class InscriptionPersonne extends Applet implements Observateur {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("source : " + ((JRadioButton) e.getSource()).getText() + " - état : " + ((JRadioButton) e.getSource()).isSelected());
+            if ("homme".equals(((JRadioButton) e.getSource()).getText())) {
+                sexe = true;
+            } else if (((JRadioButton) e.getSource()).getText() == "femme") {
+                sexe = false;
+            }
         }
     }
 }

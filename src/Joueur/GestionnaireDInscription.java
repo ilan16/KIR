@@ -37,10 +37,10 @@ public class GestionnaireDInscription {
         }
     }
 
-    public boolean inscriptionPersonne() {
+    public boolean inscriptionPersonne(String nom, String prenom, String adresse, boolean sexe, String tel) {
         System.out.println("d");
 
-        String query = "INSERT INTO personne (nom,prenom,adresse,sexe,tel) VALUES ('" + this.inscription.getNom() + "','" + this.inscription.getPrenom() + "','" + this.inscription.getAdresse() + "'," + this.inscription.getSexe() + ",'" + this.inscription.getTel() + "')";
+        String query = "INSERT INTO personne (nom,prenom,adresse,sexe,tel) VALUES ('" + nom + "','" + prenom + "','" + adresse + "'," + sexe + ",'" + tel + "')";
         System.out.println("etape 1");
         try {
             System.out.println("etape 2r");
@@ -72,9 +72,9 @@ public class GestionnaireDInscription {
         return 0;
     }
 
-    public boolean inscriptionJoueur() {
+    public boolean inscriptionJoueur(String pseudo, String mail, String password) {
         String query = "INSERT INTO joueur (pseudo, mail, password, id_personne) "
-                + "VALUES ('" + this.inscription.getPseudo() + "','" + this.inscription.getMail() + "','" + this.inscription.getPassword() + "'," + this.recupDernierId() + ")";
+                + "VALUES ('" + pseudo + "','" + mail + "','" + password + "'," + this.recupDernierId() + ")";
         System.out.println("etape 1");
         try {
             Statement requete = con.createStatement();
