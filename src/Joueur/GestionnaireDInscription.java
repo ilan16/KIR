@@ -41,6 +41,7 @@ public class GestionnaireDInscription {
         System.out.println("d");
 
         String query = "INSERT INTO personne (nom,prenom,adresse,sexe,tel) VALUES ('" + nom + "','" + prenom + "','" + adresse + "'," + sexe + ",'" + tel + "')";
+
         System.out.println("etape 1");
         try {
             System.out.println("etape 2r");

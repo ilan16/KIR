@@ -168,7 +168,6 @@ public abstract class Jeu {
             j.newScore(nv, pseudo, score2);
             j.nvSuivant(pseudo, nv);
             return true;
-            
         }
         return false;
     }
