@@ -1,7 +1,1 @@
-a
-7
-a:  7
-8
-a+b:  78
-a-  b:   -1
-true
+apassealaligne7passealalignea:7passealaligne8passealalignea+c:78passealalignea-c:-1passealaligne

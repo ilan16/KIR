@@ -13,7 +13,7 @@ public class CompareFichier {
     public CompareFichier(String nomFichier) {
         this.nomFichier = nomFichier;
         this.corr = new LireFichier(this.nomFichier);
-        this.mesReps = new LireFichier("nosExos\\rep\\test.txt");
+        this.mesReps = new LireFichier("Monresultat.txt");
     }
 
     public boolean comparerFichier() throws IOException {

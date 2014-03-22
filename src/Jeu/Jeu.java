@@ -1,16 +1,20 @@
 package Jeu;
 
 import Joueur.GestionnaireJoueur;
+import OpFichier.CompareFichier;
 import OpFichier.EcrireFichier;
 import OpFichier.LireFichier;
+import OpFichier.OpJanino;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.codehaus.commons.compiler.CompileException;
 
 public abstract class Jeu {
 
@@ -72,31 +76,30 @@ public abstract class Jeu {
         ef.ecrireDansFichier();
     }
 
-    /**
-     *
-     * @param nv
-     */
-    public abstract void nvCompleterTrous(int nv);
-
-    /**
-     *
-     * @param nv
-     */
-    public abstract void nvTrouverErreurs(int nv);
-
-    /**
-     *
-     * @param nv
-     */
-    public abstract void nvCreerProg(int nv);
-
+//    /**
+//     *
+//     * @param nv
+//     */
+//    public abstract void nvCompleterTrous(int nv);
+//
+//    /**
+//     *
+//     * @param nv
+//     */
+//    public abstract void nvTrouverErreurs(int nv);
+//
+//    /**
+//     *
+//     * @param nv
+//     */
+//    public abstract void nvCreerProg(int nv);
     public void AfficherEnoncer(int nv) throws IOException {
         int type = (nv / 4) + 1;
         int level = 0;
-        if(nv % 4==0){
-            level=4;
-        }else{
-            level=nv % 4;
+        if (nv % 4 == 0) {
+            level = 4;
+        } else {
+            level = nv % 4;
         }
         Random r = new Random();
         rand = 1 + r.nextInt(1);
@@ -121,40 +124,52 @@ public abstract class Jeu {
             l.afficherText();
         }
     }
-    
-        public String recupererReponse(){
+
+    public ArrayList recupererReponse() {
         return null;
     }
-    
-    public boolean resultatAfficherResultat(int nv){ 
-        String result=recupererReponse();
-        
+
+    public boolean resultatAfficherResultat(int nv) throws IOException {
+        int type = (nv / 4) + 1;
+        int level = nv % 4;
+        CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+        boolean reussi=l.comparerFichier();
+        return reussi;
+
+    }
+
+    public boolean resultatCompleter(int nv, String rep) throws CompileException, FileNotFoundException, InvocationTargetException, IOException {
+        if(rep.length()>50){
+        OpJanino o = new OpJanino();
+        o.ecrireResultat(rep);
+        int type = (nv / 4) + 1;
+        int level = nv % 4;
+        CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+        boolean reussi=l.comparerFichier();
+        return reussi;
+        }
         return false;
     }
-    
-     public boolean resultatCompleter(int nv){
+
+    public boolean ajouterPointAfficher(int nv, String pseudo, int temp) throws SQLException {
+        if (resultatAfficherResultat(nv)) {
+            GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
+            int score2 = 0;
+            int[] interval = j.recupererTemp(nv);
+            if (temp <= interval[0]) {
+                score2 = 150;
+            } else if (temp <= interval[1]) {
+                score2 = 100;
+            } else if (temp <= interval[2]) {
+                score2 = 75;
+            } else {
+                score2 = 50;
+            }
+            j.newScore(nv, pseudo, score2);
+            j.nvSuivant(pseudo, nv);
+            return true;
+        }
         return false;
     }
-     
-     public boolean ajouterPointAfficher(int nv,String pseudo,int temp) throws SQLException{
-         if(resultatAfficherResultat(nv)){
-             GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
-             int score2=0;
-             int [] interval=j.recupererTemp(nv);
-             if(temp<= interval[0]){
-                 score2=150;
-             }else if(temp<= interval[1]){
-                 score2=100;
-             }else if(temp<= interval[2]){
-                 score2=75;
-             }else{
-                 score2=50;
-             }
-             j.newScore(nv, pseudo,score2);
-             j.nvSuivant(pseudo,nv);
-             return true;
-         }
-        return false;
-     }
 
 }
