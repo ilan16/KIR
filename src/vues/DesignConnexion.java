@@ -4,8 +4,8 @@
  */
 package vues;
 
+import Joueur.Connect;
 import Joueur.GestionnaireDInscription;
-import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -16,50 +16,49 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
  *
  * @author ilanmalka
  */
-public class InscriptionJoueurDesign extends Applet implements Observateur {
+public class DesignConnexion extends Applet implements Observateur {
 
     private ImagePanel champsInscription;
+    private Connect connexion;
     private GestionnaireDInscription gestionnaire;
     private boolean[] verification;
 
-    public InscriptionJoueurDesign() throws SQLException {
+    public DesignConnexion() throws SQLException {
         this.champsInscription = new ImagePanel("contenuIns.png");
+        this.connexion = new Connect("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
         this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
-        this.verification = new boolean[4];
+        this.verification = new boolean[2];
     }
 
     public ImagePanel initialisation() {
-        this.contenuInscription();
+        this.contenuConnexion();
         return this.champsInscription;
     }
 
-    public void contenuInscription() {
-        JPanel contenuInsc = new JPanel();
-        contenuInsc.setLayout((new BoxLayout(contenuInsc, BoxLayout.PAGE_AXIS)));
-        contenuInsc.setOpaque(false);
+    public void contenuConnexion() {
+        JPanel contenuConnexion = new JPanel();
+        contenuConnexion.setLayout((new BoxLayout(contenuConnexion, BoxLayout.PAGE_AXIS)));
+        contenuConnexion.setOpaque(false);
 
         for (int i = 0; i < 10; i++) {
-            contenuInsc.add(new JLabel("     "));
+            contenuConnexion.add(new JLabel("     "));
         }
 
 
         champsInscription.setLayout((new BoxLayout(champsInscription, BoxLayout.PAGE_AXIS)));
         champsInscription.setPreferredSize(new Dimension(400, 500));
 
-        //contenuInsc.add(champsInscription);
 
         champsInscription.add(new JLabel("     "));
 
@@ -106,60 +105,14 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                         error.showMessageDialog(null, "Votre pseudo n'est pas bon", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         contenuPseudo.setText("");
                     } else {
+                        connexion.setPseudo(contenuPseudo.getText());
                         System.out.println("c'est bon");
                     }
                 }
             }
         });
 
-        //MAIL
-
-        JLabel mail = new JLabel("Mail: ");
-        final JTextField contenuMail = new JTextField("entrez votre mail");
-        contenuMail.setPreferredSize(new Dimension(150, 30));
-
-        JPanel panelMail = new JPanel();
-        panelMail.setOpaque(false);
-        panelMail.add(mail);
-        panelMail.add(contenuMail);
-        champsInscription.add(panelMail);
-
-        contenuMail.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if ("entrez votre mail".equals(contenuMail.getText())) {
-                    contenuMail.setText("");
-                }
-            }
-        });
-
-        contenuMail.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
-                if (e.getKeyCode() == 10) {
-                    verification[1] = gestionnaire.verifierMail(contenuMail.getText());
-                    if (!verification[1]) {
-                        System.out.println("erreur");
-                        JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Votre prénom ne peut être composé que de lettres", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
-                        contenuMail.setText("");
-                    } else {
-                        System.out.println("c'est bon");
-                    }
-                }
-            }
-        });
+        
 
         //PASSWORD 
 
@@ -204,60 +157,13 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                         error.showMessageDialog(null, "Votre password est mauvaise", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         contenuPassword.setText("");
                     } else {
+                        connexion.setPassword(contenuPassword.getText());
                         System.out.println("c'est bon");
                     }
                 }
             }
         });
 
-        //PASSWORD CONF
-
-        JLabel passwordConf = new JLabel("password de confirmation: ");
-        final JTextField contenuPasswordConf = new JTextField("entrez votre password de confirmation");
-        contenuPasswordConf.setPreferredSize(new Dimension(150, 30));
-
-        JPanel panelpasswordConf = new JPanel();
-        panelpasswordConf.setOpaque(false);
-        panelpasswordConf.add(passwordConf);
-        panelpasswordConf.add(contenuPasswordConf);
-        champsInscription.add(panelpasswordConf);
-
-        contenuPasswordConf.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if ("entrez votre password de confirmation".equals(contenuPasswordConf.getText())) {
-                    contenuPasswordConf.setText("");
-                }
-            }
-        });
-
-        contenuPasswordConf.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
-                if (e.getKeyCode() == 10) {
-                    verification[3] = gestionnaire.verifierPasswordConf(contenuPasswordConf.getText());
-                    if (!verification[3]) {
-                        System.out.println("erreur");
-                        JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Votre numéro ne peut contenir que 10 chiffres", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
-                        contenuPasswordConf.setText("");
-                    } else {
-                        System.out.println("c'est bon");
-                    }
-                }
-            }
-        });
 
         //BOUTON
 
@@ -268,10 +174,9 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < verification.length; i++) {
-                    if (!gestionnaire.equals(contenuPasswordConf.getText(), contenuPassword.getText())) {
+                    if (verification[i] = false){
                         JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Le mot de passe de confirmation n'est pas identique au mot de passe", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
-                        verification[3] = false;
+                        error.showMessageDialog(null, "Il y a une erreur dans la saisie " + (i + 1), "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         break;
                     }
 
@@ -281,19 +186,21 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                         break;
                     }
                 }
-                if (verification[0] && verification[1]) {
-                    gestionnaire.inscriptionJoueur(contenuPseudo.getText(), contenuMail.getText(), contenuPassword.getText());
-                    System.out.println("inscription finie");
+                if (verification[0] && verification[1] && verification[2] && verification[3]) {
+                    if(connexion.getIsConnexion()){
+                    System.out.println("connexion finie");
                     champsInscription.removeAll();
+                    }
                 }
             }
         });
 
-        this.champsInscription.add(contenuInsc);
+        this.champsInscription.add(contenuConnexion);
     }
-
+    
     @Override
     public void actualiserInformations() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

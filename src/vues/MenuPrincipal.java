@@ -54,6 +54,27 @@ public class MenuPrincipal extends Applet implements Observateur {
         connexion.setAlignmentX(Component.CENTER_ALIGNMENT);
         //sud.add(Box.createVerticalGlue()); 
         sud.add(connexion);
+        
+        connexion.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                   DesignConnexion connexion = new DesignConnexion();
+                    try {
+                        Fenetre f = new Fenetre("Inscription");
+                        f.setContentPane(connexion.initialisation());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                   
+                } catch (SQLException ex) {
+                    Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+            }
+        });
 
         JButton inscription = new JButton(new ImageIcon("Images/Boutons/inscription.png"));
         inscription.setOpaque(false);
