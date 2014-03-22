@@ -6,11 +6,14 @@
 
 package projetcommun;
 
+import Jeu.Jeu;
 import Joueur.GestionnaireJoueur;
+import OpFichier.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import org.codehaus.commons.compiler.CompileException;
 
 /**
@@ -39,7 +42,7 @@ public class testKevin {
 //            Logger.getLogger(ProjetCommun.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-           GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
+//           GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
 //           int a=j.compareToScore("kvn0026","azerty" );
 //           boolean a =j.remiseAZero("szdzd");
 //           int a =j.getNv("kvn0026");
@@ -50,8 +53,28 @@ public class testKevin {
 //           System.out.println(i.getNbconnecte());
 //           System.out.println(j.newScore(2, "kvn0026", 50));
 //           j.nvSuivant("azerty");
-
+//             int[] a=j.recupererTemp(0);
+//             for(int i=0;i<3;i++){
+//                 System.out.println(a[i]);
+//             }
+           
+           
 //            Jeu j =new Jeu() {};
-//            j.AfficherZoneRep(0);
+//            j.AfficherEnoncer(1);
+           
+//           int a = 7;
+//        System.out.println("a");
+//        System.out.println(a);
+//        System.out.println("a: " + a);
+//        
+//        int b=8;
+//        System.out.println(b);
+//        System.out.println("a + b : " + a+b);
+//        System.out.println("a - b : " + (a-b));
+//        System.out.println((a + 2) > b);
+           
+           CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.1.2.txt");
+        ArrayList<String> a = new ArrayList<String>();
+        l.comparerFichier();
     }
 }

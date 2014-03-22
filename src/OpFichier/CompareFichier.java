@@ -13,7 +13,7 @@ public class CompareFichier {
     public CompareFichier(String nomFichier) {
         this.nomFichier = nomFichier;
         this.corr = new LireFichier(this.nomFichier);
-        this.mesReps = new LireFichier("brouillon.txt");
+        this.mesReps = new LireFichier("nosExos\\rep\\test.txt");
     }
 
     public boolean comparerFichier() throws IOException {
@@ -23,11 +23,17 @@ public class CompareFichier {
         ArrayList repList = this.mesReps.getText();
 
         if (corrList.size() != repList.size()) {
+            System.out.println("merde");
             return false;
         }
 
         for (int i = 0; i < corrList.size(); i++) {
-            if (!corrList.get(i).equals(repList.get(i))) {
+            String a=corrList.get(i).toString();
+            String b=repList.get(i).toString();
+            a=a.replace(" ", "");
+            b=b.replace(" ", "");
+            if (!a.equals(b)) {
+                System.out.println(i);
                 return false;
             }
         }

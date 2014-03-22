@@ -92,25 +92,30 @@ public abstract class Jeu {
 
     public void AfficherEnoncer(int nv) throws IOException {
         int type = (nv / 4) + 1;
-        int level = nv % 4;
+        int level = 0;
+        if(nv % 4==0){
+            level=4;
+        }else{
+            level=nv % 4;
+        }
         Random r = new Random();
         rand = 1 + r.nextInt(1);
-        LireFichier l = new LireFichier("C:\\Users\\kevin\\Documents\\NetBeansProjects\\ProjetCommun\\nosExos\\exos\\exo" + type + "." + level + "." + this.rand + ".txt");
+        LireFichier l = new LireFichier("nosExos\\exos\\exo" + type + "." + level + "." + this.rand + ".txt");
         ArrayList<String> a = new ArrayList<String>();
         l.lireText();
         l.afficherText();
     }
 
     public void AfficherZoneRep(int nv) throws IOException {
-        if (nv % 4 == 0 || nv % 4 == 3) {
-            LireFichier l = new LireFichier("C:\\Users\\kevin\\Documents\\NetBeansProjects\\ProjetCommun\\nosExos\\rep\\pageBlanche.txt");
+        if ((nv % 4) == 1 || (nv % 4) == 0) {
+            LireFichier l = new LireFichier("nosExos\\rep\\pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();
             l.afficherText();
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
-            LireFichier l = new LireFichier("C:\\Users\\kevin\\Documents\\NetBeansProjects\\ProjetCommun\\nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+            LireFichier l = new LireFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();
             l.afficherText();
@@ -121,7 +126,9 @@ public abstract class Jeu {
         return null;
     }
     
-    public boolean resultatAfficherResultat(int nv){
+    public boolean resultatAfficherResultat(int nv){ 
+        String result=recupererReponse();
+        
         return false;
     }
     
