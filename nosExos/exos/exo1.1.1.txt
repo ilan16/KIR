@@ -1,0 +1,12 @@
+/***** AFFICHER LES RESULTATS DU PROGRAMME : *****/
+
+int a = 3;
+System.out.println("a");
+System.out.println(a);
+System.out.println("a: " + a);
+     
+int b=5;
+System.out.println(b);
+System.out.println("a + b : " + a+b);
+System.out.println("a - b : " + (a-b));
+System.out.println((a + 2) > b);

@@ -72,7 +72,7 @@ public class GestionnaireDInscription {
         return 0;
     }
 
-    public boolean inscriptionJoueur(String pseudo, String mail, String password) {
+     public boolean inscriptionJoueur(String pseudo, String mail, String password) {
         String query = "INSERT INTO joueur (pseudo, mail, password, id_personne) "
                 + "VALUES ('" + pseudo + "','" + mail + "','" + password + "'," + this.recupDernierId() + ")";
         System.out.println("etape 1");

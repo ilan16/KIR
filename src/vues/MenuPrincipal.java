@@ -68,7 +68,7 @@ public class MenuPrincipal extends Applet implements Observateur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                   InscriptionPersonneDesign ip = new InscriptionPersonneDesign();
+                   InscriptionPersonne ip = new InscriptionPersonne();
                     try {
                         Fenetre f = new Fenetre("Inscription");
                         f.setContentPane(ip.initialisation());
