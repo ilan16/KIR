@@ -18,13 +18,15 @@ import Jeu.*;
 import java.awt.FlowLayout;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ilanmalka
  */
 public class DesignJeu extends Applet implements Observateur {
-
+    JTextArea zoneTexte;
     private ImagePanel monPanel;
     private GestionnaireDInscription gestionnaire;
     private Jeu j=new Jeu() {};
@@ -63,27 +65,30 @@ public class DesignJeu extends Applet implements Observateur {
         gauche.setPreferredSize(new Dimension(400,500 ));
         
         System.out.println(j.AfficherEnoncer(1));
-        JLabel textGauche = new JLabel("<html>   "+j.AfficherEnoncer(1)+"</html>");
+        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(1));
+        textGauche.setEditable(false);
         Font texte2 = new Font("Apple Chancery", 0, 13);
         gauche.setLayout(new FlowLayout(FlowLayout.LEFT));
         textGauche.setFont(texte2);
         gauche.add(textGauche);
         
-        
         this.monPanel.add(gauche);
         
         //cote droit
         
-        JPanel droit = new JPanel();
-        droit.setBackground(Color.BLUE);
-        droit.setPreferredSize(new Dimension(400, 500));
+        JPanel droite = new JPanel();
+        droite.setBackground(Color.white);
+        droite.setPreferredSize(new Dimension(400, 500));
+        JTextArea textDroite=new JTextArea(j.AfficherZoneRep(1));
+        Font texte3 = new Font("Apple Chancery", 0, 13);
+        textDroite.setPreferredSize(new Dimension(390, 490));
+        droite.setLayout(new FlowLayout(FlowLayout.LEFT));
+        textDroite.setFont(texte3);
+        droite.add(textDroite);
         
-        JLabel textDroit = new JLabel();
         
-        
-        
-        centre.add(droit);
-        this.monPanel.add(droit);
+        centre.add(droite);
+        this.monPanel.add(droite);
         
         
     }

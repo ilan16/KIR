@@ -119,7 +119,7 @@ public abstract class Jeu {
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
-            LireFichier l = new LireFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+            LireFichier l = new LireFichier("nosExos\\exos\\exos" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
             ArrayList<String> text =l.lireText();
             String enoncer=ArrayToString(text);
@@ -177,7 +177,7 @@ public abstract class Jeu {
     public String ArrayToString(ArrayList<String> chaine){
         String chaine2="";
         for(int i =0;i<chaine.size();i++){
-            chaine2+=chaine.get(i)+"<br>";
+            chaine2+=chaine.get(i)+"\n";
         }
         return chaine2;
     }
