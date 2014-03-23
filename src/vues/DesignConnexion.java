@@ -6,7 +6,11 @@ package vues;
 
 import Joueur.Connect;
 import Joueur.GestionnaireDInscription;
+import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,13 +18,22 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.Action;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -29,38 +42,40 @@ import javax.swing.JTextField;
  */
 public class DesignConnexion extends Applet implements Observateur {
 
-    private ImagePanel champsInscription;
+    private ImagePanel monPanel;
     private Connect connexion;
     private GestionnaireDInscription gestionnaire;
     private boolean[] verification;
 
     public DesignConnexion() throws SQLException {
-        this.champsInscription = new ImagePanel("contenuIns.png");
+        this.monPanel = new ImagePanel("fondJeu.png");
         this.connexion = new Connect("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
         this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
         this.verification = new boolean[2];
     }
 
-    public ImagePanel initialisation() {
-        this.contenuConnexion();
-        return this.champsInscription;
+    public JPanel initialisation() {
+        this.contenuInscription();
+        return this.monPanel;
     }
 
-    public void contenuConnexion() {
+    public void contenuInscription() {
         JPanel contenuConnexion = new JPanel();
         contenuConnexion.setLayout((new BoxLayout(contenuConnexion, BoxLayout.PAGE_AXIS)));
         contenuConnexion.setOpaque(false);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             contenuConnexion.add(new JLabel("     "));
         }
 
 
-        champsInscription.setLayout((new BoxLayout(champsInscription, BoxLayout.PAGE_AXIS)));
-        champsInscription.setPreferredSize(new Dimension(400, 500));
+        final ImagePanel champsConnexion = new ImagePanel("contenuIns.png");
+        champsConnexion.setLayout((new BoxLayout(champsConnexion, BoxLayout.PAGE_AXIS)));
+        champsConnexion.setPreferredSize(new Dimension(400, 200));
 
+        contenuConnexion.add(champsConnexion);
 
-        champsInscription.add(new JLabel("     "));
+        champsConnexion.add(new JLabel("     "));
 
         // PSEUDO
 
@@ -72,7 +87,7 @@ public class DesignConnexion extends Applet implements Observateur {
         panelPseudo.setOpaque(false);
         panelPseudo.add(pseudo);
         panelPseudo.add(contenuPseudo);
-        champsInscription.add(panelPseudo);
+        champsConnexion.add(panelPseudo);
 
         contenuPseudo.addMouseListener(new MouseAdapter() {
             @Override
@@ -99,6 +114,7 @@ public class DesignConnexion extends Applet implements Observateur {
                 System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[0] = gestionnaire.verifierPseudo(contenuPseudo.getText());
+                    System.out.println(verification[0]);
                     if (!verification[0]) {
                         System.out.println("erreur");
                         JOptionPane error = new JOptionPane();
@@ -112,8 +128,6 @@ public class DesignConnexion extends Applet implements Observateur {
             }
         });
 
-        
-
         //PASSWORD 
 
         JLabel password = new JLabel("Password: ");
@@ -124,7 +138,7 @@ public class DesignConnexion extends Applet implements Observateur {
         panelPassword.setOpaque(false);
         panelPassword.add(password);
         panelPassword.add(contenuPassword);
-        champsInscription.add(panelPassword);
+        champsConnexion.add(panelPassword);
 
         contenuPassword.addMouseListener(new MouseAdapter() {
             @Override
@@ -150,8 +164,8 @@ public class DesignConnexion extends Applet implements Observateur {
             public void keyReleased(KeyEvent e) {
                 System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
-                    verification[2] = gestionnaire.verifierPassword(contenuPassword.getText());
-                    if (!verification[2]) {
+                    verification[1] = gestionnaire.verifierPassword(contenuPassword.getText());
+                    if (!verification[1]) {
                         System.out.println("erreur");
                         JOptionPane error = new JOptionPane();
                         error.showMessageDialog(null, "Votre password est mauvaise", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
@@ -164,43 +178,32 @@ public class DesignConnexion extends Applet implements Observateur {
             }
         });
 
-
         //BOUTON
 
         final JButton validation = new JButton("Valider");
-        champsInscription.add(validation);
+        champsConnexion.add(validation);
 
         validation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 for (int i = 0; i < verification.length; i++) {
-                    if (verification[i] = false){
-                        JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Il y a une erreur dans la saisie " + (i + 1), "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
-                        break;
-                    }
-
                     if (verification[i] == false) {
                         JOptionPane error = new JOptionPane();
                         error.showMessageDialog(null, "Il y a une erreur dans la saisie " + (i + 1), "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
-                        break;
                     }
                 }
-                if (verification[0] && verification[1] && verification[2] && verification[3]) {
-                    if(connexion.getIsConnexion()){
+                if (verification[0] && verification[1]) {
+                    if(connexion.verifier()){
                     System.out.println("connexion finie");
-                    champsInscription.removeAll();
+                    champsConnexion.removeAll();
                     }
                 }
             }
         });
 
-        this.champsInscription.add(contenuConnexion);
+        this.monPanel.add(contenuConnexion);
     }
-    
-    @Override
-    public void actualiserInformations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        public void actualiserInformations() {
     }
-    
 }

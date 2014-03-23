@@ -38,23 +38,15 @@ public class GestionnaireDInscription {
     }
 
     public boolean inscriptionPersonne(String nom, String prenom, String adresse, boolean sexe, String tel) {
-        System.out.println("d");
-
         String query = "INSERT INTO personne (nom,prenom,adresse,sexe,tel) VALUES ('" + nom + "','" + prenom + "','" + adresse + "'," + sexe + ",'" + tel + "')";
 
-        System.out.println("etape 1");
         try {
-            System.out.println("etape 2r");
             Statement requete = con.createStatement();
-            System.out.println("etape 2rprme");
             requete.executeUpdate(query);
-            System.out.println("etape 3r");
             return true;
         } catch (Exception e1) {
-            System.out.println("etape 2m");
             e1.printStackTrace();
         }
-        System.out.println("etape merdique");
         return false;
     }
 
@@ -76,7 +68,6 @@ public class GestionnaireDInscription {
      public boolean inscriptionJoueur(String pseudo, String mail, String password) {
         String query = "INSERT INTO joueur (pseudo, mail, password, id_personne) "
                 + "VALUES ('" + pseudo + "','" + mail + "','" + password + "'," + this.recupDernierId() + ")";
-        System.out.println("etape 1");
         try {
             Statement requete = con.createStatement();
             requete.executeUpdate(query);
@@ -84,8 +75,6 @@ public class GestionnaireDInscription {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-
-        System.out.println("etape merdique");
         return false;
     }
 

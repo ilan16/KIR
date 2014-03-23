@@ -58,6 +58,23 @@ public class Connect {
         }
         return false;
     }
+    
+    public boolean verifier(String pseudo, String password) {
+        String query = "SELECT * FROM joueur WHERE pseudo = '" + pseudo + "' AND password = '" + password + "'";
+        try {
+            Statement requete = con.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            ResultSet result = requete.executeQuery(query);
+            while (result.next()) {
+                String Lepseudo = result.getString(1);
+                if (Lepseudo != "") {
+                    return true;
+                }
+            }
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return false;
+    }
 
     public void isConnexion() {
         if (this.verifier()) {
