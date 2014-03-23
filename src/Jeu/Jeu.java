@@ -93,7 +93,7 @@ public abstract class Jeu {
 //     * @param nv
 //     */
 //    public abstract void nvCreerProg(int nv);
-    public void AfficherEnoncer(int nv) throws IOException {
+    public String AfficherEnoncer(int nv) throws IOException {
         int type = (nv / 4) + 1;
         int level = 0;
         if (nv % 4 == 0) {
@@ -105,24 +105,26 @@ public abstract class Jeu {
         rand = 1 + r.nextInt(1);
         LireFichier l = new LireFichier("nosExos\\exos\\exo" + type + "." + level + "." + this.rand + ".txt");
         ArrayList<String> a = new ArrayList<String>();
-        l.lireText();
-        l.afficherText();
+        ArrayList<String> text =l.lireText();
+        String enoncer=ArrayToString(text);
+        return enoncer;
     }
 
-    public void AfficherZoneRep(int nv) throws IOException {
+    public String AfficherZoneRep(int nv) throws IOException {
         if ((nv % 4) == 1 || (nv % 4) == 0) {
             LireFichier l = new LireFichier("nosExos\\rep\\pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();
-            l.afficherText();
+            
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
             LireFichier l = new LireFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
-            l.lireText();
-            l.afficherText();
+            ArrayList<String> text =l.lireText();
+            String enoncer=ArrayToString(text);
         }
+        return null;
     }
 
     public ArrayList recupererReponse() {
@@ -170,6 +172,14 @@ public abstract class Jeu {
             return true;
         }
         return false;
+    }
+    
+    public String ArrayToString(ArrayList<String> chaine){
+        String chaine2="";
+        for(int i =0;i<chaine.size();i++){
+            chaine2+=chaine.get(i)+"<br>";
+        }
+        return chaine2;
     }
 
 }

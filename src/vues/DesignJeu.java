@@ -7,12 +7,17 @@ package vues;
 import Joueur.GestionnaireDInscription;
 import java.applet.Applet;
 import java.awt.Color;
+import static java.awt.Color.white;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import Jeu.*;
+import java.awt.FlowLayout;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,33 +27,29 @@ public class DesignJeu extends Applet implements Observateur {
 
     private ImagePanel monPanel;
     private GestionnaireDInscription gestionnaire;
+    private Jeu j=new Jeu() {};
 
     public DesignJeu() throws SQLException {
         this.monPanel = new ImagePanel("fondJeu.png");
-        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
     }
     
-    public JPanel initialisation() {
+    public JPanel initialisation() throws IOException {
         this.contenu();
         return this.monPanel;
     }
      
-    public void contenu(){
+    public void contenu() throws IOException{
         
         JPanel haut = new JPanel();
         haut.setOpaque(false);
         haut.setLayout((new BoxLayout(haut, BoxLayout.PAGE_AXIS)));
         
-        JLabel niveau = new JLabel("                                                Type niveau");
+        JLabel niveau = new JLabel("                      Type niveau                            ");
         Font titreNiveau = new Font("Apple Chancery", Font.BOLD, 40);
         niveau.setFont(titreNiveau);
         haut.add(niveau);
         
-        JLabel consigne = new JLabel("                                "
-                + "                                           "
-                + "                                             **** Ne pas mettre d'espaces ****");
-        Font titreConsigne = new Font("Courier New", Font.ITALIC, 14);
-        haut.add(consigne);
+
         
         this.monPanel.add(haut);
         
@@ -58,26 +59,32 @@ public class DesignJeu extends Applet implements Observateur {
         // cote gauche
         
         JPanel gauche = new JPanel();
-        gauche.setBackground(Color.red);
-        gauche.setPreferredSize(new Dimension(150, 150));
+        gauche.setBackground(Color.white);
+        gauche.setPreferredSize(new Dimension(400,500 ));
         
-        JLabel textGauche = new JLabel();
-        textGauche.setText("toto");
+        System.out.println(j.AfficherEnoncer(1));
+        JLabel textGauche = new JLabel("<html>   "+j.AfficherEnoncer(1)+"</html>");
+        Font texte2 = new Font("Apple Chancery", 0, 13);
+        gauche.setLayout(new FlowLayout(FlowLayout.LEFT));
+        textGauche.setFont(texte2);
+        gauche.add(textGauche);
         
+        
+        this.monPanel.add(gauche);
         
         //cote droit
         
         JPanel droit = new JPanel();
         droit.setBackground(Color.BLUE);
-        droit.setPreferredSize(new Dimension(150, 150));
+        droit.setPreferredSize(new Dimension(400, 500));
         
         JLabel textDroit = new JLabel();
         
         
-        centre.add(gauche);
-        centre.add(droit);
         
-        this.monPanel.add(centre);
+        centre.add(droit);
+        this.monPanel.add(droit);
+        
         
     }
 
