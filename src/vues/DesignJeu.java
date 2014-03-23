@@ -69,22 +69,21 @@ public class DesignJeu extends Applet implements Observateur {
         gauche.setBackground(Color.white);
         gauche.setPreferredSize(new Dimension(400,500 ));
         
-        System.out.println(j.AfficherEnoncer(1));
-        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(1));
+        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(2));
         textGauche.setEditable(false);
         Font texte2 = new Font("Apple Chancery", 0, 13);
         gauche.setLayout(new FlowLayout(FlowLayout.LEFT));
         textGauche.setFont(texte2);
         gauche.add(textGauche);
         
-        this.monPanel.add(gauche);
+        
         
         //cote droit
         
         JPanel droite = new JPanel();
         droite.setBackground(Color.white);
         droite.setPreferredSize(new Dimension(400, 500));
-        final JTextArea textDroite=new JTextArea(j.AfficherZoneRep(1));
+        final JTextArea textDroite=new JTextArea(j.AfficherZoneRep(2));
         Font texte3 = new Font("Apple Chancery", 0, 13);
         textDroite.setPreferredSize(new Dimension(390, 490));
         droite.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -93,6 +92,7 @@ public class DesignJeu extends Applet implements Observateur {
         
         
         centre.add(droite);
+        this.monPanel.add(gauche);
         this.monPanel.add(droite);
         
          JButton showButton = new JButton("Show");

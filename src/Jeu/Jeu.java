@@ -112,7 +112,9 @@ public abstract class Jeu {
     }
 
     public String AfficherZoneRep(int nv) throws IOException {
+        System.out.println("zertyuiop");
         if ((nv % 4) == 1 || (nv % 4) == 0) {
+            System.out.println("merde");
             LireFichier l = new LireFichier("nosExos\\rep\\pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();
@@ -120,10 +122,11 @@ public abstract class Jeu {
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
-            LireFichier l = new LireFichier("nosExos\\exos\\exosbis" + type + "." + level + "." + this.rand + ".txt");
+            LireFichier l = new LireFichier("nosExos\\exos\\exobis" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
             ArrayList<String> text = l.lireText();
             String enoncer = ArrayToString(text);
+            return enoncer;
         }
         return null;
     }
