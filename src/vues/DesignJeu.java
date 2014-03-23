@@ -16,8 +16,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Jeu.*;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -79,7 +84,7 @@ public class DesignJeu extends Applet implements Observateur {
         JPanel droite = new JPanel();
         droite.setBackground(Color.white);
         droite.setPreferredSize(new Dimension(400, 500));
-        JTextArea textDroite=new JTextArea(j.AfficherZoneRep(1));
+        final JTextArea textDroite=new JTextArea(j.AfficherZoneRep(1));
         Font texte3 = new Font("Apple Chancery", 0, 13);
         textDroite.setPreferredSize(new Dimension(390, 490));
         droite.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -90,7 +95,17 @@ public class DesignJeu extends Applet implements Observateur {
         centre.add(droite);
         this.monPanel.add(droite);
         
-        
+         JButton showButton = new JButton("Show");
+
+      showButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String a=( textDroite.getText());    
+                System.out.println(a);
+            }
+      });
+       this.monPanel.add(showButton);
     }
 
 
