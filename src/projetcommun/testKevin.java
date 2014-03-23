@@ -76,15 +76,21 @@ public class testKevin {
 //           CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.1.2.txt");
 //        ArrayList<String> a = new ArrayList<String>();
 //        l.comparerFichier();
-            String a="a\n" +
-"9\n" +
-"a: 9\n" +
-"1\n" +
-"a + b : 91\n" +
-"a - b : 8\n" +
-"true" ;
-            j.resultatAfficherResultat(1, a);
-            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.1.3.txt");
+            String a="        int toto = 5 ;\n" +
+"        System.out.println(\"toto: \" +toto); \n" +
+"\n" +
+"        int titi=3;\n" +
+"        System.out.println(\"toto + titi: \" + (toto+titi));\n" +
+"        System.out.println(\"titi + toto: \" + titi+toto);\n" +
+"        System.out.println(\"toto % titi : \" + (toto%titi)); \n" +
+"	toto*=5; \n" +
+"	System.out.println(toto); \n" +
+"	\n" +
+"	int tutu = 7;\n" +
+"	tutu+=31;\n" +
+"	System.out.println(titi);" ;
+            j.resultatCompleter(2, a);
+            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.2.1.txt");
 //        ArrayList<String> a = new ArrayList<String>();
         l.comparerFichier();
             

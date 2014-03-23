@@ -21,21 +21,21 @@ public class OpJanino {
 
     public OpJanino() {
         se = (new org.codehaus.janino.ScriptEvaluator());
-        code += "String b=\"\";";
+        code += "String janino=\"\";";
     }
 
     public String ecrireCode(String a) {
         code += a;
-        code += "return b;";
+        code += "return janino;";
         return code;
     }
 
     public void ecrireResultat(String a) throws CompileException, FileNotFoundException, InvocationTargetException {
         se.setReturnType(String.class);
         String monCode = ecrireCode(a);
-        monCode = monCode.replace("System.out.println(\"", "b+=\"");
+        monCode = monCode.replace("System.out.println(\"", "janino+=\"");
         monCode = monCode.replace("\");", " passealaligne \";");
-        monCode = monCode.replace("System.out.println(", "b+=");
+        monCode = monCode.replace("System.out.println(", "janino+=");
         monCode = monCode.replace(");", "+\" passealaligne \";");
         System.out.println(monCode);
         se.cook(monCode);
