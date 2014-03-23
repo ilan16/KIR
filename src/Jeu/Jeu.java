@@ -105,8 +105,8 @@ public abstract class Jeu {
         rand = 1 + r.nextInt(1);
         LireFichier l = new LireFichier("nosExos\\exos\\exo" + type + "." + level + "." + this.rand + ".txt");
         ArrayList<String> a = new ArrayList<String>();
-        ArrayList<String> text =l.lireText();
-        String enoncer=ArrayToString(text);
+        ArrayList<String> text = l.lireText();
+        String enoncer = ArrayToString(text);
         return enoncer;
     }
 
@@ -114,15 +114,18 @@ public abstract class Jeu {
         if ((nv % 4) == 1 || (nv % 4) == 0) {
             LireFichier l = new LireFichier("nosExos\\rep\\pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
-            l.lireText();
-            
+            ArrayList<String> text = l.lireText();
+            String enoncer = ArrayToString(text);
+            return enoncer;
+
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
             LireFichier l = new LireFichier("nosExos\\exos\\exos" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
-            ArrayList<String> text =l.lireText();
-            String enoncer=ArrayToString(text);
+            ArrayList<String> text = l.lireText();
+            String enoncer = ArrayToString(text);
+            return enoncer;
         }
         return null;
     }
@@ -135,20 +138,20 @@ public abstract class Jeu {
         int type = (nv / 4) + 1;
         int level = nv % 4;
         CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
-        boolean reussi=l.comparerFichier();
+        boolean reussi = l.comparerFichier();
         return reussi;
 
     }
 
     public boolean resultatCompleter(int nv, String rep) throws CompileException, FileNotFoundException, InvocationTargetException, IOException {
-        if(rep.length()>50){
-        OpJanino o = new OpJanino();
-        o.ecrireResultat(rep);
-        int type = (nv / 4) + 1;
-        int level = nv % 4;
-        CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
-        boolean reussi=l.comparerFichier();
-        return reussi;
+        if (rep.length() > 50) {
+            OpJanino o = new OpJanino();
+            o.ecrireResultat(rep);
+            int type = (nv / 4) + 1;
+            int level = nv % 4;
+            CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+            boolean reussi = l.comparerFichier();
+            return reussi;
         }
         return false;
     }
@@ -173,11 +176,11 @@ public abstract class Jeu {
         }
         return false;
     }
-    
-    public String ArrayToString(ArrayList<String> chaine){
-        String chaine2="";
-        for(int i =0;i<chaine.size();i++){
-            chaine2+=chaine.get(i)+"\n";
+
+    public String ArrayToString(ArrayList<String> chaine) {
+        String chaine2 = "";
+        for (int i = 0; i < chaine.size(); i++) {
+            chaine2 += chaine.get(i) + "\n";
         }
         return chaine2;
     }
