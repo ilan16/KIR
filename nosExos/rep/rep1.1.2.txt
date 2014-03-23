@@ -1,1 +1,6 @@
-apassealaligne7passealalignea:7passealaligne8passealalignea+c:78passealalignea-c:-1passealaligne
+a
+7
+a:7
+8
+a+c:78
+a-c:-1

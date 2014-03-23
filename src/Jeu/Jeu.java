@@ -8,6 +8,7 @@ import OpFichier.OpJanino;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import org.codehaus.commons.compiler.CompileException;
 
 public abstract class Jeu {
 
-    int rand = 1;
+    int rand = 3;
     private File inputexo;
     private File inputcorr;
     private File outputrep;
@@ -26,7 +27,7 @@ public abstract class Jeu {
 
     public Jeu() {
         try {
-            this.ef = new EcrireFichier("brouillon.txt");
+            this.ef = new EcrireFichier("Monresultat.txt");
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,7 +74,7 @@ public abstract class Jeu {
      * @param nv
      */
     public void nvAfficherResultat(int nv) throws FileNotFoundException, IOException {
-        ef.ecrireDansFichier();
+
     }
 
 //    /**
@@ -105,8 +106,8 @@ public abstract class Jeu {
         rand = 1 + r.nextInt(1);
         LireFichier l = new LireFichier("nosExos\\exos\\exo" + type + "." + level + "." + this.rand + ".txt");
         ArrayList<String> a = new ArrayList<String>();
-        ArrayList<String> text =l.lireText();
-        String enoncer=ArrayToString(text);
+        ArrayList<String> text = l.lireText();
+        String enoncer = ArrayToString(text);
         return enoncer;
     }
 
@@ -115,14 +116,14 @@ public abstract class Jeu {
             LireFichier l = new LireFichier("nosExos\\rep\\pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();
-            
+
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
-            LireFichier l = new LireFichier("nosExos\\exos\\exos" + type + "." + level + "." + this.rand + ".txt");
+            LireFichier l = new LireFichier("nosExos\\exos\\exosbis" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
-            ArrayList<String> text =l.lireText();
-            String enoncer=ArrayToString(text);
+            ArrayList<String> text = l.lireText();
+            String enoncer = ArrayToString(text);
         }
         return null;
     }
@@ -131,30 +132,36 @@ public abstract class Jeu {
         return null;
     }
 
-    public boolean resultatAfficherResultat(int nv) throws IOException {
+    public boolean resultatAfficherResultat(int nv, String rep) throws IOException {
         int type = (nv / 4) + 1;
         int level = nv % 4;
+        rep=rep.replace(" ", "");
+        
+        PrintWriter fileout = new PrintWriter("Monresultat.txt");
+        fileout.println(rep);
+        fileout.flush();
+        fileout.close();
         CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
-        boolean reussi=l.comparerFichier();
+        boolean reussi = l.comparerFichier();
         return reussi;
 
     }
 
     public boolean resultatCompleter(int nv, String rep) throws CompileException, FileNotFoundException, InvocationTargetException, IOException {
-        if(rep.length()>50){
-        OpJanino o = new OpJanino();
-        o.ecrireResultat(rep);
-        int type = (nv / 4) + 1;
-        int level = nv % 4;
-        CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
-        boolean reussi=l.comparerFichier();
-        return reussi;
+        if (rep.length() > 50) {
+            OpJanino o = new OpJanino();
+            o.ecrireResultat(rep);
+            int type = (nv / 4) + 1;
+            int level = nv % 4;
+            CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+            boolean reussi = l.comparerFichier();
+            return reussi;
         }
         return false;
     }
 
-    public boolean ajouterPointAfficher(int nv, String pseudo, int temp) throws SQLException, IOException {
-        if (resultatAfficherResultat(nv)) {
+    public boolean ajouterPointAfficher(int nv, String pseudo, int temp, String a) throws SQLException, IOException {
+        if (resultatAfficherResultat(nv, a)) {
             GestionnaireJoueur j = new GestionnaireJoueur();
             int score2 = 0;
             int[] interval = j.recupererTemp(nv);
@@ -173,11 +180,11 @@ public abstract class Jeu {
         }
         return false;
     }
-    
-    public String ArrayToString(ArrayList<String> chaine){
-        String chaine2="";
-        for(int i =0;i<chaine.size();i++){
-            chaine2+=chaine.get(i)+"\n";
+
+    public String ArrayToString(ArrayList<String> chaine) {
+        String chaine2 = "";
+        for (int i = 0; i < chaine.size(); i++) {
+            chaine2 += chaine.get(i) + "\n";
         }
         return chaine2;
     }

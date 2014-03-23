@@ -1,0 +1,31 @@
+﻿/***** COMPLETER LE PROGRAMME : *****/
+
+public class Exercice1.2.1 {
+
+
+    public static void main(String[] args) {
+        int toto = COMPLETER_1 ;
+        System.out.println("toto: " COMPLETER_2);
+
+        int titi=3;
+        System.out.println("toto + titi: " + COMPLETER_3);
+        System.out.println("titi + toto: " + COMPLETER_4);
+        System.out.println("toto % titi : " + COMLETER_5);
+	toto*=COMPLETER_6 
+	System.out.println(toto);
+	
+	int tutu = 7;
+	tutu +=COMPLETER_7
+	System.out.println(tutu);
+        
+    }
+}
+
+AFFICHE
+5
+toto + titi: 8
+titi + toto: 35
+toto % titi : 2
+25
+38
+

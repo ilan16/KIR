@@ -72,19 +72,13 @@ public class EcrireFichier {
 //        if (!verifierFichier()) {
 //            throw new IOException();
 //        }
-        if (texte.equals("close")) {
-            fileout.close();
-        }
+      
         fileout.println(texte);
-        
+        fileout.close();
     }
     
-    public void ecrireDansFichier() throws FileNotFoundException, IOException{
+    public void ecrireDansFichier(String a) throws FileNotFoundException, IOException{
         //EcrireFichier e = new EcrireFichier("brouillon.txt");
-        for(;;){
-            String text = u.readString("");
-            this.ecrireLigneDansFichier(text);
-            if(text.equals("close")) break ;
-        }
+            this.ecrireLigneDansFichier(a);
     }
 }

@@ -1,0 +1,14 @@
+﻿int toto = COMPLETER_1 ;
+System.out.println("toto: " COMPLETER_2); 
+
+int titi=3;
+System.out.println("toto + titi: " + COMPLETER_3);
+System.out.println("titi + toto: " + COMPLETER_4); 
+System.out.println("toto % titi : " + COMLETER_5); 
+toto*=COMPLETER_6 
+System.out.println(toto);
+	
+int tutu = 7;
+tutu +=COMPLETER_7
+System.out.println(tutu);
+        
