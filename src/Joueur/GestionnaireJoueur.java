@@ -15,8 +15,8 @@ public class GestionnaireJoueur {
     private DOA doa;
     private Connection con;
 
-    public GestionnaireJoueur(String url, String user, String pwd) throws SQLException {
-        this.doa = new DOA(url, user, pwd);
+    public GestionnaireJoueur() throws SQLException {
+        this.doa = new DOA("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
         if (this.doa.connexion()) {
             this.con = DriverManager.getConnection(doa.getURL(), doa.getUser(), doa.getPassword());
         }

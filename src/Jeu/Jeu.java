@@ -153,7 +153,7 @@ public abstract class Jeu {
 
     public boolean ajouterPointAfficher(int nv, String pseudo, int temp) throws SQLException, IOException {
         if (resultatAfficherResultat(nv)) {
-            GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
+            GestionnaireJoueur j = new GestionnaireJoueur();
             int score2 = 0;
             int[] interval = j.recupererTemp(nv);
             if (temp <= interval[0]) {
