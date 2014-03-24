@@ -104,7 +104,7 @@ public abstract class Jeu {
         }
         Random r = new Random();
         rand = 1 + r.nextInt(1);
-        LireFichier l = new LireFichier("nosExos\\exos\\exo" + type + "." + level + "." + this.rand + ".txt");
+        LireFichier l = new LireFichier("nosExos//exos//exo" + type + "." + level + "." + this.rand + ".txt");
         ArrayList<String> a = new ArrayList<String>();
         ArrayList<String> text = l.lireText();
         String enoncer = ArrayToString(text);
@@ -115,14 +115,14 @@ public abstract class Jeu {
         System.out.println("zertyuiop");
         if ((nv % 4) == 1 || (nv % 4) == 0) {
             System.out.println("merde");
-            LireFichier l = new LireFichier("nosExos\\rep\\pageBlanche.txt");
+            LireFichier l = new LireFichier("nosExos//rep//pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();
 
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
-            LireFichier l = new LireFichier("nosExos\\exos\\exobis" + type + "." + level + "." + this.rand + ".txt");
+            LireFichier l = new LireFichier("nosExos//exos//exobis" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
             ArrayList<String> text = l.lireText();
             String enoncer = ArrayToString(text);
@@ -144,7 +144,7 @@ public abstract class Jeu {
         fileout.println(rep);
         fileout.flush();
         fileout.close();
-        CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+        CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
         boolean reussi = l.comparerFichier();
         return reussi;
 
@@ -156,7 +156,7 @@ public abstract class Jeu {
             o.ecrireResultat(rep);
             int type = (nv / 4) + 1;
             int level = nv % 4;
-            CompareFichier l = new CompareFichier("nosExos\\rep\\rep" + type + "." + level + "." + this.rand + ".txt");
+            CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
             boolean reussi = l.comparerFichier();
             return reussi;
         }

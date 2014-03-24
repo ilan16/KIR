@@ -193,9 +193,17 @@ public class DesignConnexion extends Applet implements Observateur {
                     }
                 }
                 if (verification[0] && verification[1]) {
-                    if(connexion.verifier()){
-                    System.out.println("connexion finie");
-                    champsConnexion.removeAll();
+                    if (connexion.verifier()) {
+                        System.out.println("connexion finie");
+                        champsConnexion.removeAll();
+                        monPanel.removeAll();
+                        DesignInfoJeu d;
+                        try {
+                            d = new DesignInfoJeu();
+                            monPanel.add(d.initialisation());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }
@@ -204,6 +212,6 @@ public class DesignConnexion extends Applet implements Observateur {
         this.monPanel.add(contenuConnexion);
     }
 
-        public void actualiserInformations() {
+    public void actualiserInformations() {
     }
 }

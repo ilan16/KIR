@@ -327,6 +327,7 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         validation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 for (int i = 0; i < verification.length; i++) {
                     if (verification[i] == false) {
                         JOptionPane error = new JOptionPane();
@@ -335,14 +336,11 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
                     }
                 }
                 if (verification[0] && verification[1] && verification[2] && verification[3]) {
-                    System.out.println("passe une fois");
                     gestionnaire.inscriptionPersonne(contenuNom.getText(), contenuPrenom.getText(), contenuAdresse.getText(), sexe, contenuTel.getText());
                     champsInscription.removeAll();
                     try {
-                        System.out.println("passe deux fois");
                         InscriptionJoueurDesign joueur = new InscriptionJoueurDesign();
                         champsInscription.add(joueur.initialisation());
-                        System.out.println("passe 3 fois");
                     } catch (SQLException ex) {
                         Logger.getLogger(InscriptionPersonneDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
