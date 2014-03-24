@@ -6,6 +6,7 @@ package vues;
 
 import Joueur.Connect;
 import Joueur.GestionnaireDInscription;
+import Joueur.SingletonJoueur;
 import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
 import java.awt.BorderLayout;
@@ -33,6 +34,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -121,6 +123,7 @@ public class DesignConnexion extends Applet implements Observateur {
                         error.showMessageDialog(null, "Votre pseudo n'est pas bon", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         contenuPseudo.setText("");
                     } else {
+                        SingletonJoueur.getInstance().setPseudo(contenuPseudo.getText());
                         connexion.setPseudo(contenuPseudo.getText());
                         System.out.println("c'est bon");
                     }
@@ -131,7 +134,7 @@ public class DesignConnexion extends Applet implements Observateur {
         //PASSWORD 
 
         JLabel password = new JLabel("Password: ");
-        final JTextField contenuPassword = new JTextField("entrez votre password");
+        final JPasswordField  contenuPassword = new JPasswordField();
         contenuPassword.setPreferredSize(new Dimension(150, 30));
 
         JPanel panelPassword = new JPanel();
@@ -171,6 +174,7 @@ public class DesignConnexion extends Applet implements Observateur {
                         error.showMessageDialog(null, "Votre password est mauvaise", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         contenuPassword.setText("");
                     } else {
+                        SingletonJoueur.getInstance().setPassword(contenuPassword.getText());
                         connexion.setPassword(contenuPassword.getText());
                         System.out.println("c'est bon");
                     }
@@ -204,6 +208,11 @@ public class DesignConnexion extends Applet implements Observateur {
                         } catch (SQLException ex) {
                             Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                    } else {
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous n'etes pas inscris", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
+                        monPanel.removeAll();
+                        contenuInscription();
                     }
                 }
             }

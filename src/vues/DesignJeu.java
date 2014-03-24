@@ -73,7 +73,7 @@ public class DesignJeu extends Applet implements Observateur {
 
         JTextArea textGauche = new JTextArea(j.AfficherEnoncer(1));
         textGauche.setEditable(false);
-        Font texte2 = new Font("Apple Chancery", 0, 13);
+        Font texte2 = new Font("Courier New", 0, 13);
         gauche.setLayout(new FlowLayout(FlowLayout.LEFT));
         textGauche.setFont(texte2);
         gauche.add(textGauche);
