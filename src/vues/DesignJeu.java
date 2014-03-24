@@ -7,7 +7,6 @@ package vues;
 import Joueur.GestionnaireDInscription;
 import java.applet.Applet;
 import java.awt.Color;
-import static java.awt.Color.white;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;
@@ -18,13 +17,9 @@ import Jeu.*;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
@@ -71,7 +66,7 @@ public class DesignJeu extends Applet implements Observateur {
         gauche.setBackground(Color.white);
         gauche.setPreferredSize(new Dimension(400, 500));
 
-        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(1));
+        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(SingletonJeu.getInstance().getNiveau()));
         textGauche.setEditable(false);
         Font texte2 = new Font("Courier New", 0, 13);
         gauche.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -85,7 +80,7 @@ public class DesignJeu extends Applet implements Observateur {
         JPanel droite = new JPanel();
         droite.setBackground(Color.white);
         droite.setPreferredSize(new Dimension(400, 500));
-        final JTextArea textDroite = new JTextArea(j.AfficherZoneRep(1));
+        final JTextArea textDroite = new JTextArea(j.AfficherZoneRep(SingletonJeu.getInstance().getNiveau()));
         Font texte3 = new Font("Apple Chancery", 0, 13);
         textDroite.setPreferredSize(new Dimension(390, 490));
         droite.setLayout(new FlowLayout(FlowLayout.LEFT));
