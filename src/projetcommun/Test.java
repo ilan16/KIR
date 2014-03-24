@@ -32,17 +32,17 @@ public class Test {
     static Scanner sc =  new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("hbds");
-        try {
-            Connect c = new Connect("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
-            c.entrePseudo();
-            c.entrePassword();
-            c.isConnexion();
-           // g.inscriptionJoueur();
-            System.out.println("r");
-        } catch (SQLException ex) {
-            System.out.println("m");
-            ex.printStackTrace();
+//        System.out.println("hbds");
+//        try {
+//            Connect c = new Connect("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
+//            c.entrePseudo();
+//            c.entrePassword();
+//            c.isConnexion();
+//           // g.inscriptionJoueur();
+//            System.out.println("r");
+//        } catch (SQLException ex) {
+//            System.out.println("m");
+//            ex.printStackTrace();
 //        }
 //        try {
 //            String pseudo="azerty";
@@ -67,4 +67,4 @@ public class Test {
 //            Logger.getLogger(ProjetCommun.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-}
+

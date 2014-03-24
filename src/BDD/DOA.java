@@ -13,11 +13,11 @@ public class DOA {
     private java.sql.Statement dbStatement = null;
 
     public DOA() {
-        this.URL = "jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull";
-        //this.URL = "jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull";
+        //this.URL = "jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull";
+        this.URL = "jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull";
         this.user =  "root" ;
-        //this.password = "root";
-         this.password = "";
+        this.password = "root";
+       // this.password = "";
     }
 
     public String getURL() {

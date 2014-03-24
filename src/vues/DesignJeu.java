@@ -32,7 +32,7 @@ import javax.swing.JTextField;
  */
 public class DesignJeu extends Applet implements Observateur {
 
-    JTextArea zoneTexte;
+    private JTextArea zoneTexte;
     private ImagePanel monPanel;
     private GestionnaireDInscription gestionnaire;
     private Jeu j;

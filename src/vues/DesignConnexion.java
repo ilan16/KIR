@@ -202,7 +202,7 @@ public class DesignConnexion extends Applet implements Observateur {
                 if (verification[0] && verification[1]) {
                     if (connexion.verifier()) {
                         System.out.println("connexion finie");
-                         joueur.connectionReussie(contenuPseudo.getText());
+                        joueur.connectionReussie(contenuPseudo.getText());
                         champsConnexion.removeAll();
                         monPanel.removeAll();
                         DesignInfoJeu d;

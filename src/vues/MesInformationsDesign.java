@@ -12,8 +12,14 @@ import Joueur.SingletonJoueur;
 import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -23,14 +29,14 @@ import javax.swing.JPanel;
  */
 public class MesInformationsDesign extends Applet implements Observateur {
 
-    private ImagePanel monContenu;
+    private JPanel monContenu;
     private Connect connexion;
     private Information infos;
     private GestionnaireJoueur gj;
     private GestionnaireDInscription gestionnaire;
 
     public MesInformationsDesign() throws SQLException {
-        this.monContenu = new ImagePanel("contenuIns.png");
+        this.monContenu = new JPanel();
         this.monContenu.setLayout((new BoxLayout(this.monContenu, BoxLayout.PAGE_AXIS)));
         this.monContenu.setOpaque(false);
         this.gj = new GestionnaireJoueur();
@@ -44,99 +50,127 @@ public class MesInformationsDesign extends Applet implements Observateur {
     }
 
     public void contenu() {
+        JPanel leContenu = new ImagePanel("contenuIns.png");
+
+        leContenu.setLayout((new BoxLayout(leContenu, BoxLayout.PAGE_AXIS)));
         Font titreInfos = new Font("Apple Chancery", Font.BOLD, 40);
         JLabel titre = new JLabel("Les informations");
         titre.setFont(titreInfos);
-        monContenu.add(titre);
+        leContenu.add(titre);
 
         this.infos = gj.demandeInformation(SingletonJoueur.getInstance().getPseudo());
 
         for (int i = 0; i < 10; i++) {
-            monContenu.add(new JLabel("     "));
+            leContenu.add(new JLabel("     "));
         }
-        
+
         // pseudo
         Font lesTitres = new Font("Comic Sans MS", Font.BOLD, 18);
 
         JLabel titrePseudo = new JLabel("Pseudo: ");
         titrePseudo.setFont(lesTitres);
         JLabel pseudo = new JLabel(SingletonJoueur.getInstance().getPseudo());
-        
+
         JPanel lePseudo = panelLigne(titrePseudo, pseudo);
-        monContenu.add(lePseudo);
-        
+        leContenu.add(lePseudo);
+
         JLabel titreNom = new JLabel("Nom: ");
         titreNom.setFont(lesTitres);
         JLabel nom = new JLabel(infos.getNom());
-        
+
         JPanel leNom = panelLigne(titreNom, nom);
-        monContenu.add(leNom);
-        
+        leContenu.add(leNom);
+
         JLabel titrePrenom = new JLabel("Prenom: ");
         titrePrenom.setFont(lesTitres);
         JLabel prenom = new JLabel(infos.getPrenom());
-        
+
         JPanel lePrenom = panelLigne(titrePrenom, prenom);
-        monContenu.add(lePrenom);
-        
+        leContenu.add(lePrenom);
+
         JLabel titreDateNaissance = new JLabel("date de naissance: ");
         titreDateNaissance.setFont(lesTitres);
         JLabel DateNaissance = new JLabel(infos.getCalendarNaissance());
-        
+
         JPanel leDateNaissance = panelLigne(titreDateNaissance, DateNaissance);
-        monContenu.add(leDateNaissance);
-        
+        leContenu.add(leDateNaissance);
+
         JLabel titreSexe = new JLabel("Sexe: ");
         titreSexe.setFont(lesTitres);
         JLabel Sexe = new JLabel(infos.getSexe());
-        
+
         JPanel leSexe = panelLigne(titreSexe, Sexe);
-        monContenu.add(leSexe);
-        
+        leContenu.add(leSexe);
+
         JLabel titreTel = new JLabel("Telelephone: ");
         titreTel.setFont(lesTitres);
         JLabel Tel = new JLabel(infos.getTel());
-        
+
         JPanel leTel = panelLigne(titreTel, Tel);
         titreDateNaissance.setFont(lesTitres);
-        monContenu.add(leTel);
-        
+        leContenu.add(leTel);
+
         JLabel titreMail = new JLabel("Email: ");
         titreMail.setFont(lesTitres);
         JLabel Mail = new JLabel(infos.getMail());
-        
+
         JPanel leMail = panelLigne(titreMail, Mail);
-        monContenu.add(leMail);
-        
+        leContenu.add(leMail);
+
         JLabel titreScore = new JLabel("Score : ");
         titreScore.setFont(lesTitres);
-        String tmp="";
-        tmp+=infos.getScore();
+        String tmp = "";
+        tmp += infos.getScore();
         JLabel Score = new JLabel(tmp);
-        
+
         JPanel leScore = panelLigne(titreScore, Score);
-        monContenu.add(leScore);
-        
+        leContenu.add(leScore);
+
         JLabel titreNiveau = new JLabel("Niveau : ");
         titreNiveau.setFont(lesTitres);
-        String tmp2="";
-        tmp2+=infos.getNiveau();
+        String tmp2 = "";
+        tmp2 += infos.getNiveau();
         JLabel Niveau = new JLabel(tmp2);
-        
+
         JPanel leNiveau = panelLigne(titreNiveau, Niveau);
-        monContenu.add(leNiveau);
-        
+        leContenu.add(leNiveau);
+
         JLabel titreNbconnecte = new JLabel("Nombre de connection : ");
         titreNbconnecte.setFont(lesTitres);
-        String tmp3="";
-        tmp3+=infos.getNbconnecte();
+        String tmp3 = "";
+        tmp3 += infos.getNbconnecte();
         JLabel Nbconnecte = new JLabel(tmp3);
-        
+
         JPanel leNbconnecte = panelLigne(titreNbconnecte, Nbconnecte);
-        monContenu.add(leNbconnecte);
-        
+        leContenu.add(leNbconnecte);
+
+        monContenu.add(leContenu);
+        monContenu.add(this.precedent());
 
 
+    }
+
+    public JButton precedent() {
+        JButton precedent = new JButton(new ImageIcon("Images/Boutons/precedent.png"));
+        precedent.setOpaque(false);
+        precedent.setContentAreaFilled(false);
+        precedent.setBorderPainted(false);
+        precedent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                monContenu.removeAll();
+                //monContenu = new JPanel();
+                //monContenu.setOpaque(false);
+                DesignInfoJeu d;
+                try {
+                    d = new DesignInfoJeu();
+                    monContenu.add(d.initialisation());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        return precedent;
     }
 
     public JPanel panelLigne(JLabel titre, JLabel contenu) {
