@@ -76,24 +76,29 @@ public class testKevin {
 //           CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.1.2.txt");
 //        ArrayList<String> a = new ArrayList<String>();
 //        l.comparerFichier();
-            String a="int toto = 7;\n" +
-"System.out.println(\"toto: \" +toto);\n" +
-"\n" +
-"int titi=4;\n" +
-"System.out.println(\"toto + titi: \" + (toto+titi));\n" +
-"System.out.println(\"titi + toto: \" + titi+toto);\n" +
-"System.out.println(\"toto % titi : \" + (toto%titi));\n" +
-"toto*=5; \n" +
-"System.out.println(toto);\n" +
-"	\n" +
-"int tutu = 9;\n" +
-"tutu +=22;\n" +
-"System.out.println(tutu);" ;
-            j.resultatCompleter(2, a);
-            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.2.2.txt");
-//        ArrayList<String> a = new ArrayList<String>();
-        l.comparerFichier();
             
             
+//            String a="int toto = 7;\n" +
+//"System.out.println(\"toto: \" +toto);\n" +
+//"\n" +
+//"int titi=4;\n" +
+//"System.out.println(\"toto + titi: \" + (toto+titi));\n" +
+//"System.out.println(\"titi + toto: \" + titi+toto);\n" +
+//"System.out.println(\"toto % titi : \" + (toto%titi));\n" +
+//"toto*=5; \n" +
+//"System.out.println(toto);\n" +
+//"	\n" +
+//"int tutu = 9;\n" +
+//"tutu +=22;\n" +
+//"System.out.println(tutu);" ;
+//            j.resultatCompleter(2, a);
+//            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.2.2.txt");
+////        ArrayList<String> a = new ArrayList<String>();
+//        l.comparerFichier();
+            
+            int a =5;
+            String b="";
+            b+=a;
+            System.out.println(b);
     }
 }

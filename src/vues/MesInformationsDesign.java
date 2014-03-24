@@ -66,13 +66,74 @@ public class MesInformationsDesign extends Applet implements Observateur {
         monContenu.add(lePseudo);
         
         JLabel titreNom = new JLabel("Nom: ");
-        titrePseudo.setFont(lesTitres);
+        titreNom.setFont(lesTitres);
         JLabel nom = new JLabel(infos.getNom());
         
         JPanel leNom = panelLigne(titreNom, nom);
         monContenu.add(leNom);
         
+        JLabel titrePrenom = new JLabel("Prenom: ");
+        titrePrenom.setFont(lesTitres);
+        JLabel prenom = new JLabel(infos.getPrenom());
         
+        JPanel lePrenom = panelLigne(titrePrenom, prenom);
+        monContenu.add(lePrenom);
+        
+        JLabel titreDateNaissance = new JLabel("date de naissance: ");
+        titreDateNaissance.setFont(lesTitres);
+        JLabel DateNaissance = new JLabel(infos.getCalendarNaissance());
+        
+        JPanel leDateNaissance = panelLigne(titreDateNaissance, DateNaissance);
+        monContenu.add(leDateNaissance);
+        
+        JLabel titreSexe = new JLabel("Sexe: ");
+        titreSexe.setFont(lesTitres);
+        JLabel Sexe = new JLabel(infos.getSexe());
+        
+        JPanel leSexe = panelLigne(titreSexe, Sexe);
+        monContenu.add(leSexe);
+        
+        JLabel titreTel = new JLabel("Telelephone: ");
+        titreTel.setFont(lesTitres);
+        JLabel Tel = new JLabel(infos.getTel());
+        
+        JPanel leTel = panelLigne(titreTel, Tel);
+        titreDateNaissance.setFont(lesTitres);
+        monContenu.add(leTel);
+        
+        JLabel titreMail = new JLabel("Email: ");
+        titreMail.setFont(lesTitres);
+        JLabel Mail = new JLabel(infos.getMail());
+        
+        JPanel leMail = panelLigne(titreMail, Mail);
+        monContenu.add(leMail);
+        
+        JLabel titreScore = new JLabel("Score : ");
+        titreScore.setFont(lesTitres);
+        String tmp="";
+        tmp+=infos.getScore();
+        JLabel Score = new JLabel(tmp);
+        
+        JPanel leScore = panelLigne(titreScore, Score);
+        monContenu.add(leScore);
+        
+        JLabel titreNiveau = new JLabel("Niveau : ");
+        titreNiveau.setFont(lesTitres);
+        String tmp2="";
+        tmp2+=infos.getNiveau();
+        JLabel Niveau = new JLabel(tmp2);
+        
+        JPanel leNiveau = panelLigne(titreNiveau, Niveau);
+        monContenu.add(leNiveau);
+        
+        JLabel titreNbconnecte = new JLabel("Nombre de connection : ");
+        titreNbconnecte.setFont(lesTitres);
+        String tmp3="";
+        tmp3+=infos.getNbconnecte();
+        JLabel Nbconnecte = new JLabel(tmp3);
+        
+        JPanel leNbconnecte = panelLigne(titreNbconnecte, Nbconnecte);
+        monContenu.add(leNbconnecte);
         
 
 

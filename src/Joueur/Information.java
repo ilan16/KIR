@@ -107,8 +107,12 @@ public class Information {
         this.dateNaissance = dateNaissance;
     }
 
-    public boolean getSexe() {
-        return this.sexe;
+    public String getSexe() {
+       if(this.sexe==true){
+           return"homme";
+       }else{
+           return "femme";
+       }
     }
 
     /**

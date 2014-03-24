@@ -6,6 +6,7 @@ package vues;
 
 import Joueur.Connect;
 import Joueur.GestionnaireDInscription;
+import Joueur.GestionnaireJoueur;
 import Joueur.SingletonJoueur;
 import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
@@ -48,12 +49,14 @@ public class DesignConnexion extends Applet implements Observateur {
     private Connect connexion;
     private GestionnaireDInscription gestionnaire;
     private boolean[] verification;
+    private GestionnaireJoueur joueur=new GestionnaireJoueur();
 
     public DesignConnexion() throws SQLException {
         this.monPanel = new ImagePanel("fondJeu.png");
         this.connexion = new Connect();
         this.gestionnaire = new GestionnaireDInscription();
         this.verification = new boolean[2];
+        
     }
 
     public JPanel initialisation() {
@@ -199,6 +202,7 @@ public class DesignConnexion extends Applet implements Observateur {
                 if (verification[0] && verification[1]) {
                     if (connexion.verifier()) {
                         System.out.println("connexion finie");
+                         joueur.connectionReussie(contenuPseudo.getText());
                         champsConnexion.removeAll();
                         monPanel.removeAll();
                         DesignInfoJeu d;
