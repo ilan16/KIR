@@ -51,7 +51,7 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
     public InscriptionPersonneDesign() throws SQLException {
         this.monPanel = new ImagePanel("fondJeu.png");
         this.calendrier = new JDateChooser();
-        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
+        this.gestionnaire = new GestionnaireDInscription();
         this.verification = new boolean[4];
     }
 

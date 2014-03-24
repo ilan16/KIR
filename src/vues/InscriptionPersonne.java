@@ -49,7 +49,7 @@ public class InscriptionPersonne extends Applet implements Observateur {
         this.monPanel = new ImagePanel("fondJeu.png");
         this.calendrier = new JDateChooser();
 //        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
-        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
+        this.gestionnaire = new GestionnaireDInscription();
         this.verification = new boolean[4];
     }
 

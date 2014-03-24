@@ -22,16 +22,16 @@ public class GestionnaireDInscription {
     private Joueur joueur;
     private Textui u = new Textui();
 
-    public GestionnaireDInscription(String url, String user, String pwd, Inscription insc) throws SQLException {
+    public GestionnaireDInscription(Inscription insc) throws SQLException {
         this.inscription = insc;
-        this.doa = new DOA(url, user, pwd);
+        this.doa = new DOA();
         if (this.doa.connexion()) {
             this.con = DriverManager.getConnection(doa.getURL(), doa.getUser(), doa.getPassword());
         }
     }
 
-    public GestionnaireDInscription(String url, String user, String pwd) throws SQLException {
-        this.doa = new DOA(url, user, pwd);
+    public GestionnaireDInscription() throws SQLException {
+        this.doa = new DOA();
         if (this.doa.connexion()) {
             this.con = DriverManager.getConnection(doa.getURL(), doa.getUser(), doa.getPassword());
         }

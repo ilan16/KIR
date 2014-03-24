@@ -34,8 +34,8 @@ public class MesInformationsDesign extends Applet implements Observateur {
         this.monContenu.setLayout((new BoxLayout(this.monContenu, BoxLayout.PAGE_AXIS)));
         this.monContenu.setOpaque(false);
         this.gj = new GestionnaireJoueur();
-        this.connexion = new Connect("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
-        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
+        this.connexion = new Connect();
+        this.gestionnaire = new GestionnaireDInscription();
     }
 
     public JPanel initialisation() {

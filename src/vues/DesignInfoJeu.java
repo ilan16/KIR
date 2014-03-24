@@ -34,8 +34,8 @@ public class DesignInfoJeu extends Applet implements Observateur {
     public DesignInfoJeu() throws SQLException {
         this.monContenu = new JPanel();
         this.monContenu.setOpaque(false);
-        this.connexion = new Connect("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
-        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
+        this.connexion = new Connect();
+        this.gestionnaire = new GestionnaireDInscription();
     }
 
     public JPanel initialisation() {

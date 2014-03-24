@@ -26,9 +26,9 @@ public class Connect {
     private String password;
     private boolean isConnexion;
 
-    public Connect(String url, String user, String pwd) throws SQLException {
+    public Connect() throws SQLException {
         this.isConnexion = false;
-        this.doa = new DOA(url, user, pwd);
+        this.doa = new DOA();
         if (this.doa.connexion()) {
             this.con = DriverManager.getConnection(doa.getURL(), doa.getUser(), doa.getPassword());
         }

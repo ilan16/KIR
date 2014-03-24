@@ -12,10 +12,12 @@ public class DOA {
     private java.sql.Connection dbConnect = null;
     private java.sql.Statement dbStatement = null;
 
-    public DOA(String url, String user, String password) {
-        this.URL = url;
-        this.user = user;
-        this.password = password;
+    public DOA() {
+        this.URL = "jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull";
+        //this.URL = "jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull";
+        this.user =  "root" ;
+        //this.password = "root";
+         this.password = "";
     }
 
     public String getURL() {

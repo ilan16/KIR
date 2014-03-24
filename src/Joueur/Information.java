@@ -5,6 +5,7 @@
  */
 package Joueur;
 
+import BDD.DOA;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,6 +31,7 @@ public class Information {
     private int nbconnecte;
     private String password;
     private Connection con;
+    private DOA doa;
 
     public Information(String nom, String prenom, String adresse, String dateNaissance, boolean sexe, String tel, String pseudo, String mail, int score, int nv, int nbconnecte) throws SQLException {
         this.nom = nom;
@@ -43,7 +45,10 @@ public class Information {
         this.score = score;
         this.niveau = nv;
         this.nbconnecte = nbconnecte;
-        this.con = DriverManager.getConnection("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
+        this.doa = new DOA();
+        if (this.doa.connexion()) {
+            this.con = DriverManager.getConnection(doa.getURL(), doa.getUser(), doa.getPassword());
+        }
     }
 
     public String getNom() {

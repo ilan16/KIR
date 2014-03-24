@@ -51,8 +51,8 @@ public class DesignConnexion extends Applet implements Observateur {
 
     public DesignConnexion() throws SQLException {
         this.monPanel = new ImagePanel("fondJeu.png");
-        this.connexion = new Connect("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
-        this.gestionnaire = new GestionnaireDInscription("jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "root");
+        this.connexion = new Connect();
+        this.gestionnaire = new GestionnaireDInscription();
         this.verification = new boolean[2];
     }
 
