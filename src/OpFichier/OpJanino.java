@@ -30,7 +30,7 @@ public class OpJanino {
         return code;
     }
 
-    public void ecrireResultat(String a) throws CompileException, FileNotFoundException, InvocationTargetException {
+    public boolean ecrireResultat(String a) throws CompileException, FileNotFoundException, InvocationTargetException {
         se.setReturnType(String.class);
         String monCode = ecrireCode(a);
         monCode = monCode.replace("System.out.println(\"", "janino+=\"");
@@ -38,6 +38,7 @@ public class OpJanino {
         monCode = monCode.replace("System.out.println(", "janino+=");
         monCode = monCode.replace(");", "+\" passealaligne \";");
         System.out.println(monCode);
+        try{
         se.cook(monCode);
         PrintWriter fileout = new PrintWriter("Monresultat.txt");
         Object res = (se.evaluate(new Object[0]));
@@ -47,6 +48,11 @@ public class OpJanino {
         fileout.println(b);
         fileout.flush();
         fileout.close();
+        return true;
+        } catch (Exception e1) {
+                System.out.println("erreur");
+                return false;
+            }
     }
 
 }

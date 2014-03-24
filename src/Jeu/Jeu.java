@@ -131,15 +131,13 @@ public abstract class Jeu {
         return null;
     }
 
-    public ArrayList recupererReponse() {
-        return null;
-    }
+
 
     public boolean resultatAfficherResultat(int nv, String rep) throws IOException {
         int type = (nv / 4) + 1;
         int level = nv % 4;
-        rep=rep.replace(" ", "");
-        
+        rep = rep.replace(" ", "");
+
         PrintWriter fileout = new PrintWriter("Monresultat.txt");
         fileout.println(rep);
         fileout.flush();
@@ -153,33 +151,42 @@ public abstract class Jeu {
     public boolean resultatCompleter(int nv, String rep) throws CompileException, FileNotFoundException, InvocationTargetException, IOException {
         if (rep.length() > 50) {
             OpJanino o = new OpJanino();
-            o.ecrireResultat(rep);
-            int type = (nv / 4) + 1;
-            int level = nv % 4;
-            CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
-            boolean reussi = l.comparerFichier();
-            return reussi;
+            if (o.ecrireResultat(rep)) {
+                int type = (nv / 4) + 1;
+                int level = nv % 4;
+                CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
+                boolean reussi = l.comparerFichier();
+                return reussi;
+            }
         }
         return false;
     }
 
-    public boolean ajouterPointAfficher(int nv, String pseudo, int temp, String a) throws SQLException, IOException {
+    public boolean nvReussi(int nv, String a) throws IOException, FileNotFoundException, CompileException {
         if (resultatAfficherResultat(nv, a)) {
-            GestionnaireJoueur j = new GestionnaireJoueur();
-            int score2 = 0;
-            int[] interval = j.recupererTemp(nv);
-            if (temp <= interval[0]) {
-                score2 = 150;
-            } else if (temp <= interval[1]) {
-                score2 = 100;
-            } else if (temp <= interval[2]) {
-                score2 = 75;
-            } else {
-                score2 = 50;
-            }
-            j.newScore(nv, pseudo, score2);
-            j.nvSuivant(pseudo, nv);
             return true;
+        }
+        try {
+            if (resultatCompleter(nv, a)) {
+                return true;
+            }
+        } catch (InvocationTargetException ex) {
+            return false;
+        }
+        return false;
+    }
+
+    public boolean ajouterPointAfficher(int nv, String pseudo, int temp, String a) throws SQLException, IOException, FileNotFoundException {
+        try {
+            if (nvReussi(nv, a)) {
+                GestionnaireJoueur j = new GestionnaireJoueur();
+                int score2 = score(nv, temp);
+                j.newScore(nv, pseudo, score2);
+                j.nvSuivant(pseudo, nv);
+                return true;
+            }
+        } catch (CompileException ex) {
+            return false;
         }
         return false;
     }
@@ -190,6 +197,22 @@ public abstract class Jeu {
             chaine2 += chaine.get(i) + "\n";
         }
         return chaine2;
+    }
+
+    public int score(int nv, int temp) throws SQLException {
+        GestionnaireJoueur j = new GestionnaireJoueur();
+        int score2 = 0;
+        int[] interval = j.recupererTemp(nv);
+        if (temp <= interval[0]) {
+            score2 = 150;
+        } else if (temp <= interval[1]) {
+            score2 = 100;
+        } else if (temp <= interval[2]) {
+            score2 = 75;
+        } else {
+            score2 = 50;
+        }
+        return score2;
     }
 
 }
