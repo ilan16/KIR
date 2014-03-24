@@ -12,6 +12,7 @@ import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,6 +90,23 @@ public class DesignInfoJeu extends Applet implements Observateur {
         jouer.setOpaque(false);
         jouer.setContentAreaFilled(false);
         jouer.setBorderPainted(false);
+        
+        jouer.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 monContenu.removeAll();
+                 lesPartiesDesign parties;
+                 try {
+                    parties = new lesPartiesDesign();
+                    monContenu.add(parties.initialisation());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DesignInfoJeu.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(DesignInfoJeu.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         lesBoutons.add(vertical);
         lesBoutons.add(jouer);
