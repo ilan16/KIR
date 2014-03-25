@@ -109,9 +109,7 @@ public abstract class Jeu {
     }
 
     public String AfficherZoneRep(int nv) throws IOException {
-        System.out.println("zertyuiop");
         if ((nv % 4) == 1 || (nv % 4) == 0) {
-            System.out.println("merde");
             LireFichier l = new LireFichier("nosExos//rep//pageBlanche.txt");
             ArrayList<String> a = new ArrayList<String>();
             l.lireText();

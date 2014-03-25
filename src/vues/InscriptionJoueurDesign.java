@@ -15,6 +15,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -152,7 +154,7 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                     if (!verification[1]) {
                         System.out.println("erreur");
                         JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Votre prénom ne peut être composé que de lettres", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
+                        error.showMessageDialog(null, "Votre mail est galère", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         contenuMail.setText("");
                     } else {
                         System.out.println("c'est bon");
@@ -250,7 +252,7 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                     if (!verification[3]) {
                         System.out.println("erreur");
                         JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Votre numéro ne peut contenir que 10 chiffres", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
+                        error.showMessageDialog(null, "Votre password de confirmation est mauvais", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
                         contenuPasswordConf.setText("");
                     } else {
                         System.out.println("c'est bon");
@@ -282,9 +284,23 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                     }
                 }
                 if (verification[0] && verification[1]) {
-                    gestionnaire.inscriptionJoueur(contenuPseudo.getText(), contenuMail.getText(), contenuPassword.getText());
-                    System.out.println("inscription finie");
-                    champsInscription.removeAll();
+                    try {
+                        gestionnaire.inscriptionJoueur(contenuPseudo.getText(), contenuMail.getText(), contenuPassword.getText());
+                        System.out.println("inscription finie");
+                        champsInscription.removeAll();
+                        Fenetre monPanel = new Fenetre("fondJeu.png");
+                        DesignInfoJeu d;
+                        try {
+                            d = new DesignInfoJeu();
+                            monPanel.setContentPane(d.initialisation());
+                        } catch (SQLException ex) {
+                            Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(InscriptionJoueurDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(InscriptionJoueurDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });

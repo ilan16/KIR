@@ -358,14 +358,13 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
             DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, calendrier.getLocale());
             calendrier.setMaxSelectableDate(new Date(2005, 01, 01));
             System.out.println();
-            if (calendrier.getDate().before(calendrier.getMaxSelectableDate())) {
+//            if (calendrier.getDate().before(calendrier.getMaxSelectableDate())) {
                 contenuDate.setText(df.format(calendrier.getDate()));
-                System.out.println("C'est bon");
-            } else {
-                JOptionPane error = new JOptionPane();
-                error.showMessageDialog(null, "Votre date de naissance est improbable pour apprendre le JAVA", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
-                System.out.println("error");
-            }
+//            } else {
+//                JOptionPane error = new JOptionPane();
+//                error.showMessageDialog(null, "Votre date de naissance est improbable pour apprendre le JAVA", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));
+//                System.out.println("error");
+//            }
         }
     }
 

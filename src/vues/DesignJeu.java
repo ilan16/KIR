@@ -18,7 +18,9 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -27,13 +29,14 @@ import javax.swing.JTextArea;
  * @author ilanmalka
  */
 public class DesignJeu extends Applet implements Observateur {
-
     private JTextArea zoneTexte;
     private JPanel monPanel;
     private GestionnaireDInscription gestionnaire;
+    private chrono ch;
     private Jeu j;
 
     public DesignJeu() throws SQLException {
+        this.ch = new chrono();
         this.j = new Jeu() {
         };
        this.monPanel = new ImagePanel("contenuJeu.png");
@@ -116,16 +119,30 @@ public class DesignJeu extends Applet implements Observateur {
         
         this.monPanel.add(centre);
 
-        JButton showButton = new JButton("Show");
+        JButton valider = new JButton("Valider");
 
-        showButton.addActionListener(new ActionListener() {
+        valider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String a = (textDroite.getText());
-                System.out.println(a);
+                System.out.println(ch.Sec(ch.Stop_Chrono()));
+                //monPanel.removeAll();
+                //monPanel = new ImagePanel("transparent.png");
+                 /*
+                  * si réussi
+                   JOptionPane error = new JOptionPane();
+                error.showMessageDialog(null, "Réussi, vous avez "+ blabla + " points", "Réussi", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/content.png"));
+                */  
+                
+                /*
+                 * si raté
+                 * 
+                 * JOptionPane error = new JOptionPane();
+                error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+                 */
+                
             }
         });
-        this.monPanel.add(showButton);
+        this.monPanel.add(valider);
     }
 
     @Override
