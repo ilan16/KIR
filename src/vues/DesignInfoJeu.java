@@ -45,7 +45,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
     }
 
     public void contenu(){
-        JPanel lesBoutons = new JPanel();
+        final JPanel lesBoutons = new JPanel();
         lesBoutons.setOpaque(false);
         lesBoutons.setLayout((new BoxLayout(lesBoutons, BoxLayout.PAGE_AXIS)));
 
@@ -95,6 +95,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                lesBoutons.removeAll();
                  monContenu.removeAll();
                  lesPartiesDesign parties;
                  try {

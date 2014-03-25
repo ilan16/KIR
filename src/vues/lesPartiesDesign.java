@@ -8,10 +8,15 @@ import Jeu.Jeu;
 import Jeu.SingletonJeu;
 import Joueur.GestionnaireDInscription;
 import java.applet.Applet;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -22,13 +27,14 @@ import javax.swing.JTextArea;
  */
 public class lesPartiesDesign extends Applet implements Observateur{
 
-    private ImagePanel monPanel;
+    private JPanel monPanel;
     private GestionnaireDInscription gestionnaire;
     private Jeu j;
 
     public lesPartiesDesign() throws SQLException {
         this.j = new Jeu() {};
         this.monPanel = new ImagePanel("leJeu.png");
+        this.monPanel.setPreferredSize(new Dimension(1000, 700));
     }
 
     public JPanel initialisation() throws IOException {
@@ -37,7 +43,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
     }
 
     public void contenu() throws IOException {
-        JPanel lesBoutons = new JPanel();
+        final JPanel lesBoutons = new JPanel();
         lesBoutons.setOpaque(false);
         
         JButton HelloWord = new JButton("Hello Word");
@@ -46,7 +52,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
             @Override
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(0); 
-                removeAll();
+                lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
@@ -59,7 +65,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
             @Override
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(1); 
-                removeAll();
+               lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
@@ -71,7 +77,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
             @Override
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(2); 
-                removeAll();
+                lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
@@ -83,7 +89,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
             @Override
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(3); 
-                removeAll();
+                lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
@@ -95,7 +101,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
             @Override
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(4); 
-                removeAll();
+               lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
@@ -107,31 +113,136 @@ public class lesPartiesDesign extends Applet implements Observateur{
             @Override
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(5); 
-                removeAll();
+                lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
-        lesBoutons.add(While);
+        lesBoutons.add(tableau);
         
         monPanel.add(lesBoutons);
+        
+        monPanel.add(precedent());
     }
     
     public JPanel TypeNiveau(){
         JPanel type = new JPanel();
-        
+        type.setOpaque(false);
+        type.setLayout((new BoxLayout(type, BoxLayout.PAGE_AXIS)));
+         
         JButton afficher = new JButton("1. Afficher les résultats");
         type.add(afficher);
+        afficher.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    SingletonJeu.getInstance().setTypeNiveau(1);
+                    DesignJeu jeu = new DesignJeu();
+                    monPanel.removeAll();
+                    //monPanel = new JPanel();
+                    try {
+                        monPanel.add(jeu.initialisation());
+                    } catch (IOException ex) {
+                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         JButton completer = new JButton("2. Compléter");
         type.add(completer);
+         completer.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    SingletonJeu.getInstance().setTypeNiveau(2);
+                    DesignJeu jeu = new DesignJeu();
+                    monPanel.removeAll();
+                    //monPanel = new JPanel();
+                    try {
+                        monPanel.add(jeu.initialisation());
+                    } catch (IOException ex) {
+                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         JButton erreur = new JButton("3. Trouver les erreurs");
         type.add(erreur);
+         erreur.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    SingletonJeu.getInstance().setTypeNiveau(3);
+                    DesignJeu jeu = new DesignJeu();
+                    monPanel.removeAll();
+                    //monPanel = new JPanel();
+                    try {
+                        monPanel.add(jeu.initialisation());
+                    } catch (IOException ex) {
+                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
         
         JButton programme = new JButton("4. Ecrire le programme");
         type.add(programme);
+         programme.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    SingletonJeu.getInstance().setTypeNiveau(4);
+                    DesignJeu jeu = new DesignJeu();
+                    monPanel.removeAll();
+                    //monPanel = new JPanel();
+                    try {
+                        monPanel.add(jeu.initialisation());
+                    } catch (IOException ex) {
+                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        
+        type.add(precedent());
         
         return type;
+    }
+    
+    public JButton precedent() {
+        JButton precedent = new JButton(new ImageIcon("Images/Boutons/precedent.png"));
+        precedent.setOpaque(false);
+        precedent.setContentAreaFilled(false);
+        precedent.setBorderPainted(false);
+        precedent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                monPanel.removeAll();
+                //monContenu = new JPanel();
+                //monContenu.setOpaque(false);
+                DesignInfoJeu d;
+                try {
+                    d = new DesignInfoJeu();
+                    monPanel.add(d.initialisation());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        return precedent;
     }
 
     
