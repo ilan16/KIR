@@ -31,6 +31,7 @@ import javax.swing.JTextArea;
  * @author ilanmalka
  */
 public class DesignJeu extends Applet implements Observateur {
+
     private JTextArea zoneTexte;
     private JPanel monContenu;
     private GestionnaireDInscription gestionnaire;
@@ -41,8 +42,8 @@ public class DesignJeu extends Applet implements Observateur {
         this.ch = new chrono();
         this.j = new Jeu() {
         };
-       this.monContenu = new ImagePanel("transparent.png");
-       // this.monPanel = new JPanel();
+        this.monContenu = new ImagePanel("transparent.png");
+        // this.monPanel = new JPanel();
         this.monContenu.setPreferredSize(new Dimension(900, 600));
         //this.monPanel.setOpaque(false);
         this.monContenu.setLayout((new BoxLayout(this.monContenu, BoxLayout.PAGE_AXIS)));
@@ -85,26 +86,26 @@ public class DesignJeu extends Applet implements Observateur {
 
         this.monContenu.add(haut);
 
-         for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 3; i++) {
             this.monContenu.add(new JLabel("     "));
         }
 
-        
+
         JPanel centre = new JPanel();
         centre.setOpaque(false);
         centre.setLayout((new BoxLayout(centre, BoxLayout.LINE_AXIS)));
 
         // cote gauche
-        
+
         JTextArea textGauche = new JTextArea(j.AfficherEnoncer((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())));
         //JTextArea textGauche = new JTextArea(j.AfficherEnoncer(2));
         textGauche.setEditable(false);
         textGauche.setOpaque(false);
         Font texteDroite = new Font("Courier New", 0, 13);
         textGauche.setLayout(new FlowLayout(FlowLayout.LEFT));
-        
+
         JScrollPane scrollgauche = new JScrollPane(textGauche);
-       
+
         //cote droit
 
         final JTextArea textDroite = new JTextArea(j.AfficherZoneRep((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())), 80, 50);
@@ -113,12 +114,12 @@ public class DesignJeu extends Applet implements Observateur {
         textDroite.setFont(texteDroite);
         textDroite.setOpaque(false);
         JScrollPane scrolldroite = new JScrollPane(textDroite);
-        
+
         JLabel espace = new JLabel(" ");
         centre.add(scrollgauche);
         centre.add(espace);
         centre.add(scrolldroite);
-        
+
         this.monContenu.add(centre);
 
         JButton valider = new JButton("Valider");
@@ -128,20 +129,20 @@ public class DesignJeu extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(ch.Sec(ch.Stop_Chrono()));
                 //monPanel.removeAll();
-                //monPanel = new ImagePanel("transparent.png");
-                 /*
-                  * si réussi
-                   JOptionPane error = new JOptionPane();
-                error.showMessageDialog(null, "Réussi, vous avez "+ blabla + " points", "Réussi", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/content.png"));
-                */  
-                
+
+                /*
+                 * si réussi    
+                JOptionPane error = new JOptionPane();
+                error.showMessageDialog(null, "Réussi, vous avez" +blabla + "points", "Réussi", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/content.png"));
+                */
+
                 /*
                  * si raté
                  * 
                  * JOptionPane error = new JOptionPane();
-                error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+                 error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                  */
-                
+
             }
         });
         this.monContenu.add(valider);
@@ -159,19 +160,20 @@ public class DesignJeu extends Applet implements Observateur {
                 monContenu.removeAll();
                 //monContenu = new JPanel();
                 //monContenu.setOpaque(false);
-                DesignInfoJeu d;
+                lesPartiesDesign d;
                 try {
-                    d = new DesignInfoJeu();
+                    d = new lesPartiesDesign();
                     monContenu.add(d.initialisation());
                 } catch (SQLException ex) {
                     Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(DesignJeu.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
         return precedent;
     }
 
-    
     @Override
     public void actualiserInformations() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
