@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -146,7 +147,8 @@ public class lesPartiesDesign extends Applet implements Observateur {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     }else{
-                        //ilan
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
                     
                     //monPanel = new JPanel();
