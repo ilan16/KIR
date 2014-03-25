@@ -26,16 +26,18 @@ public class CompareFichier {
             System.out.println("merde");
             return false;
         }
-
+String a ="";
+String b=repList.get(1).toString();
+ b = b.replace(" ", "");
         for (int i = 0; i < corrList.size(); i++) {
-            String a=corrList.get(i).toString();
-            String b=repList.get(i).toString();
-            a=a.replace(" ", "");
-            b=b.replace(" ", "");
-            if (!a.equals(b)) {
-                System.out.println(i);
-                return false;
-            }
+             a+=corrList.get(i).toString();
+           
+            a = a.replace(" ", "");
+           
+
+        }
+        if (!a.equals(b)) {
+            return false;
         }
         System.out.println("rentre à la maison");
         return true;
