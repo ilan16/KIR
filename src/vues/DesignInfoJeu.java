@@ -38,6 +38,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
         this.monContenu.setOpaque(false);
         this.connexion = new Connect();
         this.gestionnaire = new GestionnaireDInscription();
+        this.gj = new GestionnaireJoueur();
     }
 
     public JPanel initialisation() {
@@ -94,24 +95,24 @@ public class DesignInfoJeu extends Applet implements Observateur {
                 StringBuilder str = new StringBuilder();
                 
                 if (nv > 0) {
-                    str.append("Vous avez un meilleur niveau que " + pseudo + "de : " + nv + " niveau(x) ");
+                    str.append("Vous avez un meilleur niveau que " + pseudo + " de : " + nv + " niveau(x) ");
                 } else if (nv == 0) {
                     str.append("Vous avez un niveau égal ");
                 } else {
-                    str.append("Vous avez un moins bon niveau que " + pseudo + "de : " + (-1 * nv) + " niveau(x) ");
+                    str.append("Vous avez un moins bon niveau que " + pseudo + " de : " + (-1 * nv) + " niveau(x) ");
                 }
                 
                 int score = gj.compareToScore(SingletonJoueur.getInstance().getPseudo(), pseudo);
                 
                 if (score > 0) {
-                    str.append("puis vous avez un meilleur score que " + pseudo + "de : " + score);
+                    str.append("puis vous avez un meilleur score que " + pseudo + " de : " + score);
                 } else if (score == 0) {
                     str.append("puis vous avez un score égal");
                 } else {
-                    str.append("puis vous avez un moins bon score que " + pseudo + "de : " + (-1 * score));
+                    str.append("puis vous avez un moins bon score que " + pseudo + " de : " + (-1 * score));
                 }
                 
-                jop2.showMessageDialog(null, str, "Le résultat", JOptionPane.INFORMATION_MESSAGE);
+                jop2.showMessageDialog(null, str.toString(), "Le résultat", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
