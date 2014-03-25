@@ -33,8 +33,9 @@ public class lesPartiesDesign extends Applet implements Observateur{
 
     public lesPartiesDesign() throws SQLException {
         this.j = new Jeu() {};
-        this.monPanel = new ImagePanel("leJeu.png");
-        this.monPanel.setPreferredSize(new Dimension(1000, 700));
+        this.monPanel = new JPanel();
+        //this.monPanel = new ImagePanel("leJeu.png");
+        //this.monPanel.setPreferredSize(new Dimension(1000, 700));
     }
 
     public JPanel initialisation() throws IOException {

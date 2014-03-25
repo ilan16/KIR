@@ -6,9 +6,6 @@ package vues;
 
 import Joueur.Connect;
 import Joueur.GestionnaireDInscription;
-import Joueur.GestionnaireJoueur;
-import Joueur.Information;
-import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,6 +98,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
                  try {
                     parties = new lesPartiesDesign();
                     monContenu.add(parties.initialisation());
+                    monContenu.setOpaque(false);
                 } catch (SQLException ex) {
                     Logger.getLogger(DesignInfoJeu.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IOException ex) {

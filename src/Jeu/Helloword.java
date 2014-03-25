@@ -6,7 +6,6 @@ public class Helloword extends Jeu {
 	 * 
 	 * @param nv
 	 */
-        @Override
 	public void nvAfficherResultat(int nv) {
 
         }
