@@ -21,6 +21,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -31,6 +32,7 @@ public class MesInformationsDesign extends Applet implements Observateur {
 
     private JPanel monContenu;
     private Connect connexion;
+    private JLabel Score;
     private Information infos;
     private GestionnaireJoueur gj;
     private GestionnaireDInscription gestionnaire;
@@ -121,7 +123,7 @@ public class MesInformationsDesign extends Applet implements Observateur {
         titreScore.setFont(lesTitres);
         String tmp = "";
         tmp += infos.getScore();
-        JLabel Score = new JLabel(tmp);
+        Score = new JLabel(tmp);
 
         JPanel leScore = panelLigne(titreScore, Score);
         leContenu.add(leScore);
@@ -145,6 +147,31 @@ public class MesInformationsDesign extends Applet implements Observateur {
         leContenu.add(leNbconnecte);
 
         monContenu.add(leContenu);
+
+        JButton miseAzero = new JButton("Remise à zero");
+        miseAzero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    GestionnaireJoueur gj = new GestionnaireJoueur();
+                    gj.remiseAZero(SingletonJoueur.getInstance().getPseudo());
+                    JOptionPane error = new JOptionPane();
+                    error.showMessageDialog(null, "mise à zéro réussie", " Mise à zéro", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/reussi.png"));
+                    monContenu.removeAll();
+                    DesignInfoJeu d;
+                    try {
+                        d = new DesignInfoJeu();
+                        monContenu.add(d.initialisation());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(MesInformationsDesign.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        monContenu.add(miseAzero);
+
         monContenu.add(this.precedent());
 
 
@@ -184,6 +211,5 @@ public class MesInformationsDesign extends Applet implements Observateur {
 
     @Override
     public void actualiserInformations() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
