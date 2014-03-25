@@ -288,14 +288,9 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
                         gestionnaire.inscriptionJoueur(contenuPseudo.getText(), contenuMail.getText(), contenuPassword.getText());
                         System.out.println("inscription finie");
                         champsInscription.removeAll();
-                        Fenetre monPanel = new Fenetre("fondJeu.png");
-                        DesignInfoJeu d;
-                        try {
-                            d = new DesignInfoJeu();
-                            monPanel.setContentPane(d.initialisation());
-                        } catch (SQLException ex) {
-                            Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        Fenetre f = new Fenetre("K.I.R");
+                        MenuPrincipal menu = new MenuPrincipal();
+                        f.setContentPane(menu.initialisation());
                     } catch (SQLException ex) {
                         Logger.getLogger(InscriptionJoueurDesign.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (Exception ex) {

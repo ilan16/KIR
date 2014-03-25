@@ -7,7 +7,7 @@ package projetcommun;
 import vues.Fenetre;
 
 /**
- *6
+ *
  * @author ilanmalka
  */
 public class TestDesign {
