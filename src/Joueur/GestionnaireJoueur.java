@@ -133,7 +133,8 @@ public class GestionnaireJoueur {
                 System.out.println("zertyuioertyuio");
                 diff = score2 - scoreNv(nv, pseudo);
                 query = "UPDATE score SET score = " + score2 + " WHERE pseudo = '" + pseudo + "' and id_partie=" + nv + "";
-            } else {
+            } 
+            if(scoreNv(nv, pseudo) >= score2){
                 return false;
             }
             String query2 = "UPDATE joueur SET score = " + (getScoreFinal(pseudo) + diff) + " WHERE pseudo = '" + pseudo + "'";
