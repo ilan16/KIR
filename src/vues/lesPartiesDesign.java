@@ -147,9 +147,9 @@ public class lesPartiesDesign extends Applet implements Observateur {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     }else{
-                        JOptionPane error = new JOptionPane();
+                        
+                    }JOptionPane error = new JOptionPane();
                         error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
-                    }
                     
                     //monPanel = new JPanel();
                     
@@ -178,6 +178,8 @@ public class lesPartiesDesign extends Applet implements Observateur {
                     }
                     }else{
                         //ilan
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
                     
                     //monPanel = new JPanel();
@@ -207,6 +209,8 @@ public class lesPartiesDesign extends Applet implements Observateur {
                     }
                     }else{
                         //ilan
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
                     
                     //monPanel = new JPanel();
@@ -236,6 +240,8 @@ public class lesPartiesDesign extends Applet implements Observateur {
                     }
                     }else{
                         //ilan
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
                     
                     //monPanel = new JPanel();
