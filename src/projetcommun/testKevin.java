@@ -43,12 +43,12 @@ public class testKevin {
 //            Logger.getLogger(ProjetCommun.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-//           GestionnaireJoueur j = new GestionnaireJoueur("jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull", "root", "");
-//           int a=j.compareToScore("kvn0026","azerty" );
+           GestionnaireJoueur j = new GestionnaireJoueur();
+           int a=j.compareToNv("kvn0026","lessi" );
 //           boolean a =j.remiseAZero("szdzd");
 //           int a =j.getNv("kvn0026");
 //           boolean a =j.verifierNv(2, "kvn0026");
-//           System.out.println(a);
+           System.out.println(a);
 //           j.connectionReussie("kvn0026");
 //           Information i=j.demandeInformation("kvn0026");
 //           System.out.println(i.getNbconnecte());
@@ -60,7 +60,7 @@ public class testKevin {
 //             }
            
            
-            Jeu j =new Jeu() {};
+//            Jeu j =new Jeu() {};
 //            j.AfficherEnoncer(1);
            
 //           int a = 7;
@@ -79,18 +79,18 @@ public class testKevin {
 //        l.comparerFichier();
             
             
-            String a=
-"        System.out.println(7);\n" +
-"        System.out.println(32.6);\n" +
-"        System.out.println(9);\n" +
-"        System.out.println(12.5);\n" +
-"        System.out.println(39.6); \n" +
-"        System.out.println(9*12.5);\n"  ;
-            System.out.println(a.length());
-            j.resultatCompleter(4, a);
-            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.0.2.txt");
-//        ArrayList<String> a = new ArrayList<String>();
-        l.comparerFichier();
+//            String a=
+//"        System.out.println(7);\n" +
+//"        System.out.println(32.6);\n" +
+//"        System.out.println(9);\n" +
+//"        System.out.println(12.5);\n" +
+//"        System.out.println(39.6); \n" +
+//"        System.out.println(9*12.5);\n"  ;
+//            System.out.println(a.length());
+//            j.resultatCompleter(4, a);
+//            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.0.2.txt");
+////        ArrayList<String> a = new ArrayList<String>();
+//        l.comparerFichier();
             
             
     }

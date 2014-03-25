@@ -121,13 +121,16 @@ public class GestionnaireJoueur {
     }
 
     public boolean newScore(int nv, String pseudo, int score2) {
+
         if (verifierNv(nv, pseudo)) {
             String query = "";
             int diff = 0;
             if (monNiveau(nv, pseudo)) {
                 diff = score2;
                 query = "INSERT INTO score (id_partie,pseudo,score) VALUES (" + nv + ",'" + pseudo + "'," + score2 + ")";
-            } else if (scoreNv(nv, pseudo) < score2) {
+            }
+            if (scoreNv(nv, pseudo) < score2) {
+                System.out.println("zertyuioertyuio");
                 diff = score2 - scoreNv(nv, pseudo);
                 query = "UPDATE score SET score = " + score2 + " WHERE pseudo = '" + pseudo + "' and id_partie=" + nv + "";
             } else {
@@ -182,10 +185,12 @@ public class GestionnaireJoueur {
         if (demandeExistance(pseudo)) {
             String query1 = "UPDATE joueur SET score = 0  WHERE pseudo = '" + pseudo + "'";
             String query2 = "UPDATE joueur SET id_partie=1 WHERE pseudo = '" + pseudo + "'";
+            String query3 = "UPDATE score SET score = 0  WHERE pseudo = '" + pseudo + "'";
             try {
                 Statement requete = con.createStatement();
                 requete.executeUpdate(query1);
                 requete.executeUpdate(query2);
+                requete.executeUpdate(query3);
                 return true;
             } catch (Exception e1) {
                 e1.printStackTrace();
@@ -227,9 +232,9 @@ public class GestionnaireJoueur {
                     String tel = result.getString(6);
                     boolean a;
                     if (sexe == 1) {
-                        a = true;
-                    } else {
                         a = false;
+                    } else {
+                        a = true;
                     }
                     Information i = new Information(nom, prenom, adresse, naissance, a, tel, pseudo, mail, score, sexe, nbconnection);
                     return i;
