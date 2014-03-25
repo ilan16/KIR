@@ -236,7 +236,7 @@ public class GestionnaireJoueur {
                     } else {
                         a = true;
                     }
-                    Information i = new Information(nom, prenom, adresse, naissance, a, tel, pseudo, mail, score, sexe, nbconnection);
+                    Information i = new Information(nom, prenom, adresse, naissance, a, tel, pseudo, mail, score, id_partie, nbconnection);
                     return i;
                 }
             } catch (Exception e1) {

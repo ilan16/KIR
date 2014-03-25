@@ -31,7 +31,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
     private JPanel monContenu;
     private Connect connexion;
     private GestionnaireDInscription gestionnaire;
-    private GestionnaireJoueur gj;
+    private GestionnaireJoueur gj=new GestionnaireJoueur();
 
     public DesignInfoJeu() throws SQLException {
         this.monContenu = new JPanel();
