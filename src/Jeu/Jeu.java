@@ -19,7 +19,7 @@ import org.codehaus.commons.compiler.CompileException;
 
 public abstract class Jeu {
 
-    int rand = 1;
+    int rand = 0;
     private File inputexo;
     private File inputcorr;
     private File outputrep;
@@ -76,7 +76,6 @@ public abstract class Jeu {
 //    public void nvAfficherResultat(int nv) throws FileNotFoundException, IOException {
 //
 //    }
-
 //    /**
 //     *
 //     * @param nv
@@ -96,14 +95,12 @@ public abstract class Jeu {
 //    public abstract void nvCreerProg(int nv);
     public String AfficherEnoncer(int nv) throws IOException {
         int type = (nv / 4) + 1;
-        int level = 0;
+        int level = nv % 4;
         if (nv % 4 == 0) {
-            level = 4;
-        } else {
-            level = nv % 4;
+            type--;
         }
         Random r = new Random();
-        rand = 1 + r.nextInt(1);
+        rand = 1 + r.nextInt(2);
         LireFichier l = new LireFichier("nosExos//exos//exo" + type + "." + level + "." + this.rand + ".txt");
         ArrayList<String> a = new ArrayList<String>();
         ArrayList<String> text = l.lireText();
@@ -122,6 +119,9 @@ public abstract class Jeu {
         } else {
             int type = (nv / 4) + 1;
             int level = nv % 4;
+            if (nv % 4 == 0) {
+                type--;
+            }
             LireFichier l = new LireFichier("nosExos//exos//exobis" + type + "." + level + "." + this.rand + ".txt");
             ArrayList<String> a = new ArrayList<String>();
             ArrayList<String> text = l.lireText();
@@ -131,11 +131,12 @@ public abstract class Jeu {
         return null;
     }
 
-
-
     public boolean resultatAfficherResultat(int nv, String rep) throws IOException {
         int type = (nv / 4) + 1;
         int level = nv % 4;
+        if (nv % 4 == 0) {
+            type--;
+        }
         rep = rep.replace(" ", "");
 
         PrintWriter fileout = new PrintWriter("Monresultat.txt");
@@ -151,14 +152,17 @@ public abstract class Jeu {
     public boolean resultatCompleter(int nv, String rep) throws CompileException, FileNotFoundException, InvocationTargetException, IOException {
         if (rep.length() > 200) {
             OpJanino o = new OpJanino();
-            if (o.ecrireResultat(rep)) {
-                int type = (nv / 4) + 1;
-                int level = nv % 4;
-                CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
-                boolean reussi = l.comparerFichier();
-                return reussi;
+            o.ecrireResultat(rep);
+            int type = (nv / 4) + 1;
+            int level = nv % 4;
+            if (nv % 4 == 0) {
+                type--;
             }
+            CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
+            boolean reussi = l.comparerFichier();
+            return reussi;
         }
+
         return false;
     }
 
