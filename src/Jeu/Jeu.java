@@ -142,7 +142,7 @@ public abstract class Jeu {
         PrintWriter fileout = new PrintWriter("Monresultat.txt");
         fileout.println(rep);
         fileout.flush();
-        fileout.close();
+        fileout.close();    
         CompareFichier l = new CompareFichier("nosExos//rep//rep" + type + "." + level + "." + this.rand + ".txt");
         boolean reussi = l.comparerFichier();
         return reussi;
