@@ -113,7 +113,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
         this.monContenu.add(lesBoutons);
         
     }
-    
+
     @Override
     public void actualiserInformations() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

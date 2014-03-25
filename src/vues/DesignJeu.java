@@ -18,6 +18,8 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -30,7 +32,7 @@ import javax.swing.JTextArea;
  */
 public class DesignJeu extends Applet implements Observateur {
     private JTextArea zoneTexte;
-    private JPanel monPanel;
+    private JPanel monContenu;
     private GestionnaireDInscription gestionnaire;
     private chrono ch;
     private Jeu j;
@@ -39,16 +41,16 @@ public class DesignJeu extends Applet implements Observateur {
         this.ch = new chrono();
         this.j = new Jeu() {
         };
-       this.monPanel = new ImagePanel("contenuJeu.png");
+       this.monContenu = new ImagePanel("transparent.png");
        // this.monPanel = new JPanel();
-        this.monPanel.setPreferredSize(new Dimension(900, 600));
+        this.monContenu.setPreferredSize(new Dimension(900, 600));
         //this.monPanel.setOpaque(false);
-        this.monPanel.setLayout((new BoxLayout(this.monPanel, BoxLayout.PAGE_AXIS)));
+        this.monContenu.setLayout((new BoxLayout(this.monContenu, BoxLayout.PAGE_AXIS)));
     }
 
     public JPanel initialisation() throws IOException {
         this.contenu();
-        return this.monPanel;
+        return this.monContenu;
     }
 
     public void contenu() throws IOException {
@@ -81,10 +83,10 @@ public class DesignJeu extends Applet implements Observateur {
         haut.add(niveau);
         haut.setOpaque(false);
 
-        this.monPanel.add(haut);
+        this.monContenu.add(haut);
 
          for (int i = 0; i < 3; i++) {
-            this.monPanel.add(new JLabel("     "));
+            this.monContenu.add(new JLabel("     "));
         }
 
         
@@ -117,7 +119,7 @@ public class DesignJeu extends Applet implements Observateur {
         centre.add(espace);
         centre.add(scrolldroite);
         
-        this.monPanel.add(centre);
+        this.monContenu.add(centre);
 
         JButton valider = new JButton("Valider");
 
@@ -142,9 +144,34 @@ public class DesignJeu extends Applet implements Observateur {
                 
             }
         });
-        this.monPanel.add(valider);
+        this.monContenu.add(valider);
+        this.monContenu.add(this.precedent());
     }
 
+    public JButton precedent() {
+        JButton precedent = new JButton(new ImageIcon("Images/Boutons/precedent.png"));
+        precedent.setOpaque(false);
+        precedent.setContentAreaFilled(false);
+        precedent.setBorderPainted(false);
+        precedent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                monContenu.removeAll();
+                //monContenu = new JPanel();
+                //monContenu.setOpaque(false);
+                DesignInfoJeu d;
+                try {
+                    d = new DesignInfoJeu();
+                    monContenu.add(d.initialisation());
+                } catch (SQLException ex) {
+                    Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+        return precedent;
+    }
+
+    
     @Override
     public void actualiserInformations() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

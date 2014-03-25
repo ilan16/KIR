@@ -357,7 +357,6 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         public void propertyChange(PropertyChangeEvent evt) {
             DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, calendrier.getLocale());
             calendrier.setMaxSelectableDate(new Date(2005, 01, 01));
-            System.out.println();
 //            if (calendrier.getDate().before(calendrier.getMaxSelectableDate())) {
                 contenuDate.setText(df.format(calendrier.getDate()));
 //            } else {

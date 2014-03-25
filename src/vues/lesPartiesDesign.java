@@ -27,21 +27,22 @@ import javax.swing.JTextArea;
  */
 public class lesPartiesDesign extends Applet implements Observateur {
 
-    private JPanel monPanel;
+    private JPanel monContenu;
     private GestionnaireDInscription gestionnaire;
     private Jeu j;
 
     public lesPartiesDesign() throws SQLException {
         this.j = new Jeu() {
         };
-        this.monPanel = new JPanel();
+        this.monContenu = new JPanel();
+        this.monContenu.setOpaque(false);
         //this.monPanel = new ImagePanel("leJeu.png");
         //this.monPanel.setPreferredSize(new Dimension(1000, 700));
     }
 
     public JPanel initialisation() throws IOException {
         this.contenu();
-        return this.monPanel;
+        return this.monContenu;
     }
 
     public void contenu() throws IOException {
@@ -54,7 +55,7 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(0);
                 lesBoutons.removeAll();
-                monPanel.add(TypeNiveau());
+                monContenu.add(TypeNiveau());
             }
         });
         lesBoutons.add(HelloWord);
@@ -66,7 +67,7 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(1);
                 lesBoutons.removeAll();
-                monPanel.add(TypeNiveau());
+                monContenu.add(TypeNiveau());
             }
         });
         lesBoutons.add(If);
@@ -77,7 +78,7 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(2);
                 lesBoutons.removeAll();
-                monPanel.add(TypeNiveau());
+                monContenu.add(TypeNiveau());
             }
         });
         lesBoutons.add(doWhile);
@@ -88,7 +89,7 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(3);
                 lesBoutons.removeAll();
-                monPanel.add(TypeNiveau());
+                monContenu.add(TypeNiveau());
             }
         });
         lesBoutons.add(While);
@@ -99,7 +100,7 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(4);
                 lesBoutons.removeAll();
-                monPanel.add(TypeNiveau());
+                monContenu.add(TypeNiveau());
             }
         });
         lesBoutons.add(For);
@@ -110,14 +111,14 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 SingletonJeu.getInstance().setNiveau(5);
                 lesBoutons.removeAll();
-                monPanel.add(TypeNiveau());
+                monContenu.add(TypeNiveau());
             }
         });
         lesBoutons.add(tableau);
 
-        monPanel.add(lesBoutons);
+        monContenu.add(lesBoutons);
 
-        monPanel.add(precedent());
+        monContenu.add(precedent());
     }
 
     public JPanel TypeNiveau() {
@@ -133,11 +134,11 @@ public class lesPartiesDesign extends Applet implements Observateur {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(1);
                     DesignJeu jeu = new DesignJeu();
-                    monPanel.removeAll();
+                    monContenu.removeAll();
                     //monPanel = new JPanel();
                     try {
-                        monPanel.add(jeu.initialisation());
-                        monPanel.setOpaque(false);
+                        monContenu.add(jeu.initialisation());
+                        monContenu.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -155,11 +156,11 @@ public class lesPartiesDesign extends Applet implements Observateur {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(2);
                     DesignJeu jeu = new DesignJeu();
-                    monPanel.removeAll();
+                    monContenu.removeAll();
                     //monPanel = new JPanel();
                     try {
-                        monPanel.add(jeu.initialisation());
-                        monPanel.setOpaque(false);
+                        monContenu.add(jeu.initialisation());
+                        monContenu.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -177,11 +178,11 @@ public class lesPartiesDesign extends Applet implements Observateur {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(3);
                     DesignJeu jeu = new DesignJeu();
-                    monPanel.removeAll();
+                    monContenu.removeAll();
                     //monPanel = new JPanel();
                     try {
-                        monPanel.add(jeu.initialisation());
-                        monPanel.setOpaque(false);
+                        monContenu.add(jeu.initialisation());
+                        monContenu.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -199,11 +200,11 @@ public class lesPartiesDesign extends Applet implements Observateur {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(4);
                     DesignJeu jeu = new DesignJeu();
-                    monPanel.removeAll();
+                    monContenu.removeAll();
                     //monPanel = new JPanel();
                     try {
-                        monPanel.add(jeu.initialisation());
-                        monPanel.setOpaque(false);
+                        monContenu.add(jeu.initialisation());
+                        monContenu.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -212,8 +213,6 @@ public class lesPartiesDesign extends Applet implements Observateur {
                 }
             }
         });
-
-        type.add(precedent());
 
         return type;
     }
@@ -226,13 +225,13 @@ public class lesPartiesDesign extends Applet implements Observateur {
         precedent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                monPanel.removeAll();
+                monContenu.removeAll();
                 //monContenu = new JPanel();
                 //monContenu.setOpaque(false);
                 DesignInfoJeu d;
                 try {
                     d = new DesignInfoJeu();
-                    monPanel.add(d.initialisation());
+                    monContenu.add(d.initialisation());
                 } catch (SQLException ex) {
                     Logger.getLogger(DesignConnexion.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -240,6 +239,7 @@ public class lesPartiesDesign extends Applet implements Observateur {
         });
         return precedent;
     }
+
 
     @Override
     public void actualiserInformations() {

@@ -175,7 +175,7 @@ public class MesInformationsDesign extends Applet implements Observateur {
 
     public JPanel panelLigne(JLabel titre, JLabel contenu) {
         JPanel panel = new JPanel();
-        panel.setOpaque(true);
+        panel.setOpaque(false);
         panel.setLayout((new BoxLayout(panel, BoxLayout.LINE_AXIS)));
         panel.add(titre);
         panel.add(contenu);
