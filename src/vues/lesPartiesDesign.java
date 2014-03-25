@@ -25,14 +25,15 @@ import javax.swing.JTextArea;
  *
  * @author ilanmalka
  */
-public class lesPartiesDesign extends Applet implements Observateur{
+public class lesPartiesDesign extends Applet implements Observateur {
 
     private JPanel monPanel;
     private GestionnaireDInscription gestionnaire;
     private Jeu j;
 
     public lesPartiesDesign() throws SQLException {
-        this.j = new Jeu() {};
+        this.j = new Jeu() {
+        };
         this.monPanel = new JPanel();
         //this.monPanel = new ImagePanel("leJeu.png");
         //this.monPanel.setPreferredSize(new Dimension(1000, 700));
@@ -46,94 +47,87 @@ public class lesPartiesDesign extends Applet implements Observateur{
     public void contenu() throws IOException {
         final JPanel lesBoutons = new JPanel();
         lesBoutons.setOpaque(false);
-        
+
         JButton HelloWord = new JButton("Hello Word");
         HelloWord.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                SingletonJeu.getInstance().setNiveau(0); 
+                SingletonJeu.getInstance().setNiveau(0);
                 lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
         lesBoutons.add(HelloWord);
-        
-        
+
+
         JButton If = new JButton("if");
         If.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                SingletonJeu.getInstance().setNiveau(1); 
-               lesBoutons.removeAll();
+                SingletonJeu.getInstance().setNiveau(1);
+                lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
         lesBoutons.add(If);
-        
+
         JButton doWhile = new JButton("Do ...  While");
         doWhile.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                SingletonJeu.getInstance().setNiveau(2); 
+                SingletonJeu.getInstance().setNiveau(2);
                 lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
         lesBoutons.add(doWhile);
-        
+
         JButton While = new JButton("While");
         While.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                SingletonJeu.getInstance().setNiveau(3); 
+                SingletonJeu.getInstance().setNiveau(3);
                 lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
         lesBoutons.add(While);
-        
+
         JButton For = new JButton("for");
         For.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                SingletonJeu.getInstance().setNiveau(4); 
-               lesBoutons.removeAll();
+                SingletonJeu.getInstance().setNiveau(4);
+                lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
         lesBoutons.add(For);
-        
+
         JButton tableau = new JButton("tableaux");
         tableau.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                SingletonJeu.getInstance().setNiveau(5); 
+                SingletonJeu.getInstance().setNiveau(5);
                 lesBoutons.removeAll();
                 monPanel.add(TypeNiveau());
             }
         });
         lesBoutons.add(tableau);
-        
+
         monPanel.add(lesBoutons);
-        
+
         monPanel.add(precedent());
     }
-    
-    public JPanel TypeNiveau(){
+
+    public JPanel TypeNiveau() {
         JPanel type = new JPanel();
         type.setOpaque(false);
         type.setLayout((new BoxLayout(type, BoxLayout.PAGE_AXIS)));
-         
+
         JButton afficher = new JButton("1. Afficher les résultats");
         type.add(afficher);
         afficher.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -143,6 +137,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
                     //monPanel = new JPanel();
                     try {
                         monPanel.add(jeu.initialisation());
+                        monPanel.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -151,11 +146,10 @@ public class lesPartiesDesign extends Applet implements Observateur{
                 }
             }
         });
-        
+
         JButton completer = new JButton("2. Compléter");
         type.add(completer);
-         completer.addActionListener(new ActionListener() {
-
+        completer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -165,6 +159,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
                     //monPanel = new JPanel();
                     try {
                         monPanel.add(jeu.initialisation());
+                        monPanel.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -173,11 +168,10 @@ public class lesPartiesDesign extends Applet implements Observateur{
                 }
             }
         });
-        
+
         JButton erreur = new JButton("3. Trouver les erreurs");
         type.add(erreur);
-         erreur.addActionListener(new ActionListener() {
-
+        erreur.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -187,6 +181,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
                     //monPanel = new JPanel();
                     try {
                         monPanel.add(jeu.initialisation());
+                        monPanel.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -195,11 +190,10 @@ public class lesPartiesDesign extends Applet implements Observateur{
                 }
             }
         });
-        
+
         JButton programme = new JButton("4. Ecrire le programme");
         type.add(programme);
-         programme.addActionListener(new ActionListener() {
-
+        programme.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -209,6 +203,7 @@ public class lesPartiesDesign extends Applet implements Observateur{
                     //monPanel = new JPanel();
                     try {
                         monPanel.add(jeu.initialisation());
+                        monPanel.setOpaque(false);
                     } catch (IOException ex) {
                         Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -217,12 +212,12 @@ public class lesPartiesDesign extends Applet implements Observateur{
                 }
             }
         });
-        
+
         type.add(precedent());
-        
+
         return type;
     }
-    
+
     public JButton precedent() {
         JButton precedent = new JButton(new ImageIcon("Images/Boutons/precedent.png"));
         precedent.setOpaque(false);
@@ -246,10 +241,8 @@ public class lesPartiesDesign extends Applet implements Observateur{
         return precedent;
     }
 
-    
     @Override
     public void actualiserInformations() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

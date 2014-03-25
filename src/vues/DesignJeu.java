@@ -36,10 +36,10 @@ public class DesignJeu extends Applet implements Observateur {
     public DesignJeu() throws SQLException {
         this.j = new Jeu() {
         };
-       // this.monPanel = new ImagePanel("fondJeu.png");
-        this.monPanel = new JPanel();
+       this.monPanel = new ImagePanel("contenuJeu.png");
+       // this.monPanel = new JPanel();
         this.monPanel.setPreferredSize(new Dimension(900, 600));
-        this.monPanel.setOpaque(false);
+        //this.monPanel.setOpaque(false);
         this.monPanel.setLayout((new BoxLayout(this.monPanel, BoxLayout.PAGE_AXIS)));
     }
 
@@ -76,6 +76,7 @@ public class DesignJeu extends Applet implements Observateur {
         Font titreNiveau = new Font("Apple Chancery", Font.BOLD, 40);
         niveau.setFont(titreNiveau);
         haut.add(niveau);
+        haut.setOpaque(false);
 
         this.monPanel.add(haut);
 
@@ -89,47 +90,29 @@ public class DesignJeu extends Applet implements Observateur {
         centre.setLayout((new BoxLayout(centre, BoxLayout.LINE_AXIS)));
 
         // cote gauche
-
-        JPanel gauche = new JPanel();
-        gauche.setOpaque(false);
-        gauche.setBackground(Color.white);
-        gauche.setPreferredSize(new Dimension(300, 600));
         
-        //JTextArea textGauche = new JTextArea(j.AfficherEnoncer((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())));
-        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(2));
+        JTextArea textGauche = new JTextArea(j.AfficherEnoncer((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())));
+        //JTextArea textGauche = new JTextArea(j.AfficherEnoncer(2));
         textGauche.setEditable(false);
+        textGauche.setOpaque(false);
         Font texteDroite = new Font("Courier New", 0, 13);
-        gauche.setLayout(new FlowLayout(FlowLayout.LEFT));
-        textGauche.setFont(texteDroite);
+        textGauche.setLayout(new FlowLayout(FlowLayout.LEFT));
         
         JScrollPane scrollgauche = new JScrollPane(textGauche);
-        //scrollgauche.setHorizontalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        //scrollgauche.setVerticalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        gauche.add(scrollgauche);
-
-
-
+       
         //cote droit
 
-        JPanel droite = new JPanel();
-        droite.setOpaque(false);
-        droite.setBackground(Color.white);
-        droite.setPreferredSize(new Dimension(300, 600));
-        //final JTextArea textDroite = new JTextArea(j.AfficherZoneRep((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())));
-        final JTextArea textDroite = new JTextArea(j.AfficherZoneRep(2));
-        textDroite.setPreferredSize(new Dimension(390, 490));
-        droite.setLayout(new FlowLayout(FlowLayout.LEFT));
+        final JTextArea textDroite = new JTextArea(j.AfficherZoneRep((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())), 80, 50);
+        //final JTextArea textDroite = new JTextArea(j.AfficherZoneRep(2));
+        textDroite.setLayout(new FlowLayout(FlowLayout.LEFT));
         textDroite.setFont(texteDroite);
+        textDroite.setOpaque(false);
         JScrollPane scrolldroite = new JScrollPane(textDroite);
-//        scrolldroite.setHorizontalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-       // scrolldroite.setVerticalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        droite.add(scrolldroite);
         
         JLabel espace = new JLabel(" ");
-        
-        centre.add(gauche);
+        centre.add(scrollgauche);
         centre.add(espace);
-        centre.add(droite);
+        centre.add(scrolldroite);
         
         this.monPanel.add(centre);
 
