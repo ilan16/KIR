@@ -179,18 +179,11 @@ public abstract class Jeu {
     }
 
     public boolean ajouterPointAfficher(int nv, String pseudo, int temp, String a) throws SQLException, IOException, FileNotFoundException {
-        try {
-            if (nvReussi(nv, a)) {
-                GestionnaireJoueur j = new GestionnaireJoueur();
-                int score2 = score(nv, temp);
-                j.newScore(nv, pseudo, score2);
-                j.nvSuivant(pseudo, nv);
-                return true;
-            }
-        } catch (CompileException ex) {
-            return false;
-        }
-        return false;
+        GestionnaireJoueur j = new GestionnaireJoueur();
+        int score2 = score(nv, temp);
+        j.newScore(nv, pseudo, score2);
+        j.nvSuivant(pseudo, nv);
+        return true;
     }
 
     public String ArrayToString(ArrayList<String> chaine) {

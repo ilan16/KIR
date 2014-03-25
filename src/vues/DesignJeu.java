@@ -14,6 +14,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Jeu.*;
+import Joueur.SingletonJoueur;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import org.codehaus.commons.compiler.CompileException;
 
 /**
  *
@@ -37,6 +39,7 @@ public class DesignJeu extends Applet implements Observateur {
     private GestionnaireDInscription gestionnaire;
     private chrono ch;
     private Jeu j;
+    private int nv=(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau());
 
     public DesignJeu() throws SQLException {
         this.ch = new chrono();
@@ -97,7 +100,7 @@ public class DesignJeu extends Applet implements Observateur {
 
         // cote gauche
 
-        JTextArea textGauche = new JTextArea(j.AfficherEnoncer((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())));
+        JTextArea textGauche = new JTextArea(j.AfficherEnoncer(nv));
         //JTextArea textGauche = new JTextArea(j.AfficherEnoncer(2));
         textGauche.setEditable(false);
         textGauche.setOpaque(false);
@@ -108,7 +111,7 @@ public class DesignJeu extends Applet implements Observateur {
 
         //cote droit
 
-        final JTextArea textDroite = new JTextArea(j.AfficherZoneRep((SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau())), 80, 50);
+        final JTextArea textDroite = new JTextArea(j.AfficherZoneRep(nv), 80, 50);
         //final JTextArea textDroite = new JTextArea(j.AfficherZoneRep(2));
         textDroite.setLayout(new FlowLayout(FlowLayout.LEFT));
         textDroite.setFont(texteDroite);
@@ -127,21 +130,29 @@ public class DesignJeu extends Applet implements Observateur {
         valider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(ch.Sec(ch.Stop_Chrono()));
-                //monPanel.removeAll();
-
-                /*
-                 * si réussi    
-                JOptionPane error = new JOptionPane();
-                error.showMessageDialog(null, "Réussi, vous avez" +blabla + "points", "Réussi", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/content.png"));
-                */
-
-                /*
-                 * si raté
-                 * 
-                 * JOptionPane error = new JOptionPane();
-                 error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
-                 */
+               int temp=ch.Sec(ch.Stop_Chrono());
+//                monPanel.removeAll();
+                try {
+                    if(j.nvReussi(nv,textDroite.getText())){
+                        JOptionPane error = new JOptionPane();
+                        j.ajouterPointAfficher(nv,SingletonJoueur.getInstance().getPseudo(), temp,textDroite.getText() );
+                        error.showMessageDialog(null, "Réussi, vous avez" +j.score(nv, temp) + "points", "Réussi", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/content.png"));
+                    }else{
+                        JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+                    }
+                    
+                    
+                } catch (IOException ex) {
+                    JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+                } catch (CompileException ex) {
+                    JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+                } catch (SQLException ex) {
+                    JOptionPane error = new JOptionPane();
+                        error.showMessageDialog(null, "Vous avez perdu", "Perdu", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+                }
 
             }
         });
