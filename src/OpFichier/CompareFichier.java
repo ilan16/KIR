@@ -22,16 +22,13 @@ public class CompareFichier {
         this.mesReps.lireText();
         ArrayList repList = this.mesReps.getText();
 
-        if (corrList.size() != repList.size()) {
-            System.out.println("merde");
-            return false;
-        }
+
         String a = "";
         String b = "";
         for (int i = 0; i < corrList.size(); i++) {
             a += corrList.get(i).toString();
-b=repList.get(1).toString();
-        b = b.replace(" ", "");
+            b = repList.get(i).toString();
+            b = b.replace(" ", "");
             a = a.replace(" ", "");
 
         }
