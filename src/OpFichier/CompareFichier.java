@@ -27,11 +27,16 @@ public class CompareFichier {
         String b = "";
         for (int i = 0; i < corrList.size(); i++) {
             a += corrList.get(i).toString();
-            b = repList.get(i).toString();
-            b = b.replace(" ", "");
+            
             a = a.replace(" ", "");
 
         }
+        for(int i = 0; i < repList.size(); i++){
+            b += repList.get(i).toString();
+            b = b.replace(" ", "");
+        }
+        System.out.println(a);
+        System.out.println(b);
         if (!a.equals(b)) {
             return false;
         }
