@@ -26,14 +26,13 @@ public class CompareFichier {
             System.out.println("merde");
             return false;
         }
-String a ="";
-String b=repList.get(1).toString();
- b = b.replace(" ", "");
+        String a = "";
+        String b = "";
         for (int i = 0; i < corrList.size(); i++) {
-             a+=corrList.get(i).toString();
-           
+            a += corrList.get(i).toString();
+b=repList.get(1).toString();
+        b = b.replace(" ", "");
             a = a.replace(" ", "");
-           
 
         }
         if (!a.equals(b)) {
