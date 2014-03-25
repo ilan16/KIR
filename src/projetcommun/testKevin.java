@@ -87,8 +87,8 @@ public class testKevin {
 "        System.out.println(39.6); \n" +
 "        System.out.println(9*12.5);\n"  ;
             System.out.println(a.length());
-            j.resultatCompleter(2, a);
-            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.2.2.txt");
+            j.resultatCompleter(4, a);
+            CompareFichier l = new CompareFichier("nosExos\\rep\\rep1.0.2.txt");
 //        ArrayList<String> a = new ArrayList<String>();
         l.comparerFichier();
             
