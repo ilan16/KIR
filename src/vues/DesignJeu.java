@@ -64,16 +64,16 @@ public class DesignJeu extends Applet implements Observateur {
 
         JLabel niveau = null;
         switch (SingletonJeu.getInstance().getTypeNiveau()) {
-            case 0:
+            case 1:
                 niveau = new JLabel("                      Afficher les résultats                            ");
                 break;
-            case 1:
+            case 2:
                 niveau = new JLabel("                      Compléter                            ");
                 break;
-            case 2:
+            case 3:
                 niveau = new JLabel("                      Trouver les erreurs                            ");
                 break;
-            case 3:
+            case 4:
                 niveau = new JLabel("                     Ecrire le programme                            ");
                 break;
             default:
