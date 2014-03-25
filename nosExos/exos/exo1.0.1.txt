@@ -1,0 +1,12 @@
+﻿/***** ECRIRE LE PROGRAMME : *****/
+Exercice1.4.1
+
+Ecrire un programme de moins de 8 lignes dans lequel se trouvera:
+	- 4 variables double
+	- il affichera :
+		7,0
+		32,6
+		9
+		12,5
+	- il devra faire l'addition entre les deux premières variables puis afficher le résultat (qui devra étre 39,6)
+	- il devrai faire une multipication entre la 3e et la 4e variable puis afficher le résultat (qui devra étre 112,5)

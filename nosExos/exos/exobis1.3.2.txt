@@ -1,0 +1,11 @@
+String toto == "b";        
+String tata = "d";
+String tutu = a;
+string titi = "c";
+       
+System.out.println("titi + tata");
+System.out.println(toto + tutu);
+System.out.println("toto: " + toto);
+tutu+=toto
+System.out.println(tutu);
+System.out.println(tutu.charAt(1));

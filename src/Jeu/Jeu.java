@@ -69,13 +69,13 @@ public abstract class Jeu {
         this.outputrep = output;
     }
 
-    /**
-     *
-     * @param nv
-     */
-    public void nvAfficherResultat(int nv) throws FileNotFoundException, IOException {
-
-    }
+//    /**
+//     *
+//     * @param nv
+//     */
+//    public void nvAfficherResultat(int nv) throws FileNotFoundException, IOException {
+//
+//    }
 
 //    /**
 //     *
@@ -149,7 +149,7 @@ public abstract class Jeu {
     }
 
     public boolean resultatCompleter(int nv, String rep) throws CompileException, FileNotFoundException, InvocationTargetException, IOException {
-        if (rep.length() > 50) {
+        if (rep.length() > 200) {
             OpJanino o = new OpJanino();
             if (o.ecrireResultat(rep)) {
                 int type = (nv / 4) + 1;

@@ -1,0 +1,25 @@
+﻿/***** TROUVE LES ERREURS : *****/
+public class Exercice1.3.1 {
+
+
+    public static void main(String[] args) {
+        String toto == "a";        
+        String tata = "b";
+        String tutu = c;
+        string titi = "d";
+        
+        System.out.println("titi + tata");
+        System.out.println(toto + tutu);
+        System.out.println("toto: " + toto);
+        tutu+=toto
+	System.out.println(tutu);
+	System.out.println(tutu.charAt(1));
+    }
+}
+
+affiche
+db
+ab
+toto: a
+ca
+c
