@@ -19,7 +19,7 @@ import org.codehaus.commons.compiler.CompileException;
 
 public abstract class Jeu {
 
-    int rand = 0;
+    int rand = 1;
     private File inputexo;
     private File inputcorr;
     private File outputrep;
