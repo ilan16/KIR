@@ -79,7 +79,6 @@ public class GestionnaireDInscription {
     }
 
     public boolean verifierNom(String nom) {
-        System.out.println("nom");
         if (nom.matches(this.chaine)) {
             return true;
         }
@@ -87,7 +86,6 @@ public class GestionnaireDInscription {
     }
 
     public boolean verifierPrenom(String prenom) {
-        System.out.println("prenom");
         if (prenom.matches(this.chaine)) {
             return true;
         }
@@ -100,7 +98,6 @@ public class GestionnaireDInscription {
     }
 
     public boolean verifierAdresse(String adresse) {
-        System.out.println("ADRESSE");
         if (adresse.matches(this.tout)) {
             return true;
         }
@@ -108,7 +105,6 @@ public class GestionnaireDInscription {
     }
 
     public boolean verifierTel(String tel) {
-        System.out.println("tel");
         if (tel.length() != 10) {
             return false;
         }

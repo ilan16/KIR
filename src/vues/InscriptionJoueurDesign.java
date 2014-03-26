@@ -95,17 +95,14 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
         contenuPseudo.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[0] = gestionnaire.verifierPseudo(contenuPseudo.getText());
                     if (!verification[0]) {
@@ -144,17 +141,14 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
         contenuMail.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[1] = gestionnaire.verifierMail(contenuMail.getText());
                     if (!verification[1]) {
@@ -193,17 +187,14 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
         contenuPassword.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[2] = gestionnaire.verifierPassword(contenuPassword.getText());
                     if (!verification[2]) {
@@ -242,17 +233,14 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
         contenuPasswordConf.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[3] = gestionnaire.verifierPasswordConf(contenuPasswordConf.getText());
                     if (!verification[3]) {

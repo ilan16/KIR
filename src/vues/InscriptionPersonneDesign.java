@@ -108,17 +108,14 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         contenuNom.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[0] = gestionnaire.verifierNom(contenuNom.getText());
                     if (!verification[0]) {
@@ -157,17 +154,14 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         contenuPrenom.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[1] = gestionnaire.verifierPrenom(contenuPrenom.getText());
                     if (!verification[1]) {
@@ -206,17 +200,14 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         contenuAdresse.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[2] = gestionnaire.verifierAdresse(contenuAdresse.getText());
                     if (!verification[2]) {
@@ -255,17 +246,14 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         contenuTel.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                System.out.println("Code touche tapée : " + e.getKeyCode() + " - caractère touche tapée : " + e.getKeyChar());
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                System.out.println("Code touche pressée : " + e.getKeyCode() + " - caractère touche pressée : " + e.getKeyChar());
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-                System.out.println("Code touche relâchée : " + e.getKeyCode() + " - caractère touche relâchée : " + e.getKeyChar());
                 if (e.getKeyCode() == 10) {
                     verification[3] = gestionnaire.verifierTel(contenuTel.getText());
                     if (!verification[3]) {

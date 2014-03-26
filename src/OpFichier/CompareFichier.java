@@ -35,12 +35,9 @@ public class CompareFichier {
             b += repList.get(i).toString();
             b = b.replace(" ", "");
         }
-        System.out.println(a);
-        System.out.println(b);
         if (!a.equals(b)) {
             return false;
         }
-        System.out.println("rentre à la maison");
         return true;
     }
 }

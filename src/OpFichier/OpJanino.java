@@ -37,15 +37,12 @@ public class OpJanino {
         monCode = monCode.replace("\");", " passealaligne \";");
         monCode = monCode.replace("System.out.println(", "janino+=");
         monCode = monCode.replace(");", "+\" passealaligne \";");
-        System.out.println(monCode);
         try {
             se.cook(monCode);
             PrintWriter fileout = new PrintWriter("Monresultat.txt");
             Object res = (se.evaluate(new Object[0]));
             String b = res.toString().replace(" ", "");
             
-            System.out.println(res);
-            System.out.println(b);
             fileout.println(b);
             fileout.flush();
             fileout.close();

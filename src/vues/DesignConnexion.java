@@ -105,7 +105,6 @@ public class DesignConnexion extends Applet implements Observateur {
             public void keyReleased(KeyEvent e) {
                 if (e.getKeyCode() == 10) {
                     verification[0] = gestionnaire.verifierPseudo(contenuPseudo.getText());
-                    System.out.println(verification[0]);
                     if (!verification[0]) {
                         System.out.println("erreur");
                         JOptionPane error = new JOptionPane();

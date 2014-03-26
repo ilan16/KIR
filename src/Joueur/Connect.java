@@ -79,7 +79,6 @@ public class Connect {
     public void isConnexion() {
         if (this.verifier()) {
             this.isConnexion = true;
-            System.out.println("on peut rentrer a la maison");
         }
         
     }

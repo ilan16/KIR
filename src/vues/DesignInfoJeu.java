@@ -89,9 +89,7 @@ public class DesignInfoJeu extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 JOptionPane jop = new JOptionPane(), jop2 = new JOptionPane();
                 String pseudo = jop.showInputDialog(null, "Veuillez entrer le pseudo de la personne avec qui vous voulez vous comparer !", "Comparer votre résultat !", JOptionPane.QUESTION_MESSAGE);
-                System.out.println(pseudo);
                 int nv = gj.compareToNv(SingletonJoueur.getInstance().getPseudo(), pseudo);
-                System.out.println(nv);
                 StringBuilder str = new StringBuilder();
                 
                 if (nv > 0) {

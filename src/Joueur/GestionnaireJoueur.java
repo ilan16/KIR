@@ -128,7 +128,6 @@ public class GestionnaireJoueur {
                 query = "INSERT INTO score (id_partie,pseudo,score) VALUES (" + nv + ",'" + pseudo + "'," + score2 + ")";
             }
             if (scoreNv(nv, pseudo) < score2) {
-                System.out.println("zertyuioertyuio");
                 diff = score2 - scoreNv(nv, pseudo);
                 query = "UPDATE score SET score = " + score2 + " WHERE pseudo = '" + pseudo + "' and id_partie=" + nv + "";
             } 
