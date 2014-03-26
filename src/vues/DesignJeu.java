@@ -6,7 +6,6 @@ package vues;
 
 import Joueur.GestionnaireDInscription;
 import java.applet.Applet;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.sql.SQLException;

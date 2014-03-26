@@ -16,15 +16,12 @@ import javax.swing.JFrame;
 public class Fenetre extends JFrame {
 
     MenuPrincipal leDesign = new MenuPrincipal();
-    InscriptionPersonneDesign ins = new InscriptionPersonneDesign();
-    DesignConnexion conn = new DesignConnexion();
-    DesignJeu jeu = new DesignJeu();
-    DesignInfoJeu d = new DesignInfoJeu();
+//    InscriptionPersonneDesign ins = new InscriptionPersonneDesign();
+//    DesignConnexion conn = new DesignConnexion();
+//    DesignJeu jeu = new DesignJeu();
+//    DesignInfoJeu d = new DesignInfoJeu();
 
     public Fenetre(String text) throws SQLException, Exception {
-        this.ins = new InscriptionPersonneDesign();
-
-
         this.setTitle(text);
         this.setSize(1000, 700);
 
