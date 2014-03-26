@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.codehaus.commons.compiler.CompileException;
 
-public abstract class Jeu {
+public class Jeu {
 
     int rand = 1;
     private File inputexo;
@@ -69,30 +69,12 @@ public abstract class Jeu {
         this.outputrep = output;
     }
 
-//    /**
-//     *
-//     * @param nv
-//     */
-//    public void nvAfficherResultat(int nv) throws FileNotFoundException, IOException {
-//
-//    }
-//    /**
-//     *
-//     * @param nv
-//     */
-//    public abstract void nvCompleterTrous(int nv);
-//
-//    /**
-//     *
-//     * @param nv
-//     */
-//    public abstract void nvTrouverErreurs(int nv);
-//
-//    /**
-//     *
-//     * @param nv
-//     */
-//    public abstract void nvCreerProg(int nv);
+
+    /**
+     *
+     * @param nv
+     */
+    
     public String AfficherEnoncer(int nv) throws IOException {
         int type = (nv / 4) + 1;
         int level = nv % 4;
