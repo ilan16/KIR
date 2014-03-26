@@ -10,7 +10,6 @@ import Joueur.Information;
 import OpFichier.EcrireFichier;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

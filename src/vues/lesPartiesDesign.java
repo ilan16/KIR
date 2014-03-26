@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -49,8 +50,10 @@ public class lesPartiesDesign extends Applet implements Observateur {
     }
 
     public void contenu() throws IOException {
-        final JPanel lesBoutons = new JPanel();
+        final JPanel lesBoutons = new ImagePanel("contenuIns.png");
+        lesBoutons.setLayout((new BoxLayout(lesBoutons, BoxLayout.PAGE_AXIS)));
         lesBoutons.setOpaque(false);
+
 
         JButton HelloWord = new JButton("Hello Word");
         HelloWord.addActionListener(new ActionListener() {
@@ -136,23 +139,23 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(1);
-                     GestionnaireJoueur joueur=new GestionnaireJoueur();
-                    if(joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(),SingletonJoueur.getInstance().getPseudo())){
+                    GestionnaireJoueur joueur = new GestionnaireJoueur();
+                    if (joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(), SingletonJoueur.getInstance().getPseudo())) {
                         DesignJeu jeu = new DesignJeu();
-                    monContenu.removeAll();
-                    try {
-                        monContenu.add(jeu.initialisation());
-                        monContenu.setOpaque(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                        monContenu.removeAll();
+                        try {
+                            monContenu.add(jeu.initialisation());
+                            monContenu.setOpaque(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
                     }
-                    }else{
-                        
-                    }JOptionPane error = new JOptionPane();
-                        error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
-                    
+                    JOptionPane error = new JOptionPane();
+                    error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
+
                     //monPanel = new JPanel();
-                    
+
                 } catch (SQLException ex) {
                     Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -166,24 +169,24 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(2);
-                    GestionnaireJoueur joueur=new GestionnaireJoueur();
-                    if(joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(),SingletonJoueur.getInstance().getPseudo())){
+                    GestionnaireJoueur joueur = new GestionnaireJoueur();
+                    if (joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(), SingletonJoueur.getInstance().getPseudo())) {
                         DesignJeu jeu = new DesignJeu();
-                    monContenu.removeAll();
-                    try {
-                        monContenu.add(jeu.initialisation());
-                        monContenu.setOpaque(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    }else{
+                        monContenu.removeAll();
+                        try {
+                            monContenu.add(jeu.initialisation());
+                            monContenu.setOpaque(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
                         //ilan
                         JOptionPane error = new JOptionPane();
                         error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
-                    
+
                     //monPanel = new JPanel();
-                    
+
                 } catch (SQLException ex) {
                     Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -197,24 +200,24 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(3);
-                     GestionnaireJoueur joueur=new GestionnaireJoueur();
-                    if(joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(),SingletonJoueur.getInstance().getPseudo())){
+                    GestionnaireJoueur joueur = new GestionnaireJoueur();
+                    if (joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(), SingletonJoueur.getInstance().getPseudo())) {
                         DesignJeu jeu = new DesignJeu();
-                    monContenu.removeAll();
-                    try {
-                        monContenu.add(jeu.initialisation());
-                        monContenu.setOpaque(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    }else{
+                        monContenu.removeAll();
+                        try {
+                            monContenu.add(jeu.initialisation());
+                            monContenu.setOpaque(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
                         //ilan
                         JOptionPane error = new JOptionPane();
                         error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
-                    
+
                     //monPanel = new JPanel();
-                    
+
                 } catch (SQLException ex) {
                     Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -228,24 +231,24 @@ public class lesPartiesDesign extends Applet implements Observateur {
             public void actionPerformed(ActionEvent e) {
                 try {
                     SingletonJeu.getInstance().setTypeNiveau(4);
-                    GestionnaireJoueur joueur=new GestionnaireJoueur();
-                    if(joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(),SingletonJoueur.getInstance().getPseudo())){
+                    GestionnaireJoueur joueur = new GestionnaireJoueur();
+                    if (joueur.verifierNv(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau(), SingletonJoueur.getInstance().getPseudo())) {
                         DesignJeu jeu = new DesignJeu();
-                    monContenu.removeAll();
-                    try {
-                        monContenu.add(jeu.initialisation());
-                        monContenu.setOpaque(false);
-                    } catch (IOException ex) {
-                        Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    }else{
+                        monContenu.removeAll();
+                        try {
+                            monContenu.add(jeu.initialisation());
+                            monContenu.setOpaque(false);
+                        } catch (IOException ex) {
+                            Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
                         //ilan
                         JOptionPane error = new JOptionPane();
                         error.showMessageDialog(null, "Vous n'avez pas accès encore à ce niveau mais ça va venir ...", "Impossible d'accès", JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/pleurer.png"));
                     }
-                    
+
                     //monPanel = new JPanel();
-                    
+
                 } catch (SQLException ex) {
                     Logger.getLogger(lesPartiesDesign.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -277,7 +280,6 @@ public class lesPartiesDesign extends Applet implements Observateur {
         });
         return precedent;
     }
-
 
     @Override
     public void actualiserInformations() {

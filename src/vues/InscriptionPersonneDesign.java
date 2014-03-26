@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -77,6 +78,11 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         contenuInsc.add(champsInscription);
 
         champsInscription.add(new JLabel("     "));
+
+        JLabel consigne = new JLabel("Il est préférable d'appuier sur ENTRER pour valider et voir les erreurs éventuelles de vos champs");
+        Font consigneFont = new Font("Courier New", Font.ITALIC, 8);
+        consigne.setFont(consigneFont);
+        champsInscription.add(consigne);
 
         // NOM
 
@@ -288,7 +294,7 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         panelSexe.add(homme);
         panelSexe.add(femme);
 
-        homme.setSelected(false);
+        homme.setSelected(true);
 
         ButtonGroup bg = new ButtonGroup();
         bg.add(homme);
@@ -327,7 +333,11 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
         validation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                verification[0] = gestionnaire.verifierNom(contenuNom.getText());
+                verification[1] = gestionnaire.verifierPrenom(contenuPrenom.getText());
+                verification[2] = gestionnaire.verifierAdresse(contenuAdresse.getText());
+                verification[3] = gestionnaire.verifierTel(contenuTel.getText());
+
                 for (int i = 0; i < verification.length; i++) {
                     if (verification[i] == false) {
                         JOptionPane error = new JOptionPane();
@@ -344,7 +354,7 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
                     } catch (SQLException ex) {
                         Logger.getLogger(InscriptionPersonneDesign.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
+
                 }
             }
         });
@@ -358,7 +368,7 @@ public class InscriptionPersonneDesign extends Applet implements Observateur {
             DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, calendrier.getLocale());
             calendrier.setMaxSelectableDate(new Date(2005, 01, 01));
 //            if (calendrier.getDate().before(calendrier.getMaxSelectableDate())) {
-                contenuDate.setText(df.format(calendrier.getDate()));
+            contenuDate.setText(df.format(calendrier.getDate()));
 //            } else {
 //                JOptionPane error = new JOptionPane();
 //                error.showMessageDialog(null, "Votre date de naissance est improbable pour apprendre le JAVA", "Attention", JOptionPane.WARNING_MESSAGE, new ImageIcon("Images/erreur.png"));

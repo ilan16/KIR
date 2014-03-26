@@ -37,12 +37,12 @@ public class DesignJeu extends Applet implements Observateur {
     private JTextArea zoneTexte;
     private JPanel monContenu;
     private GestionnaireDInscription gestionnaire;
-    private chrono ch;
+    private Chrono ch;
     private Jeu j;
     private int nv=(SingletonJeu.getInstance().getNiveau() * 4 + SingletonJeu.getInstance().getTypeNiveau());
 
     public DesignJeu() throws SQLException {
-        this.ch = new chrono();
+        this.ch = new Chrono();
         this.j = new Jeu() {
         };
         this.monContenu = new ImagePanel("transparent.png");

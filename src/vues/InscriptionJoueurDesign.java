@@ -8,6 +8,7 @@ import Joueur.GestionnaireDInscription;
 import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -65,6 +66,11 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
 
         champsInscription.add(new JLabel("     "));
 
+        JLabel consigne = new JLabel("Il est préférable d'appuier sur ENTRER pour valider et voir les erreurs éventuelles de vos champs");
+        Font consigneFont = new Font("Courier New", Font.ITALIC, 8);
+        consigne.setFont(consigneFont);
+        champsInscription.add(consigne);
+        
         // PSEUDO
 
         JLabel pseudo = new JLabel("Pseudo: ");
@@ -269,6 +275,11 @@ public class InscriptionJoueurDesign extends Applet implements Observateur {
         validation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                verification[0] = gestionnaire.verifierPseudo(contenuPseudo.getText());
+                verification[1] = gestionnaire.verifierMail(contenuMail.getText());
+                verification[2] = gestionnaire.verifierPassword(contenuPassword.getText());
+                
+                
                 for (int i = 0; i < verification.length; i++) {
                     if (!gestionnaire.equals(contenuPasswordConf.getText(), contenuPassword.getText())) {
                         JOptionPane error = new JOptionPane();

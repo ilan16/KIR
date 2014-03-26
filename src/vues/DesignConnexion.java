@@ -8,11 +8,7 @@ import Joueur.Connect;
 import Joueur.GestionnaireDInscription;
 import Joueur.GestionnaireJoueur;
 import Joueur.SingletonJoueur;
-import com.toedter.calendar.JDateChooser;
 import java.applet.Applet;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,23 +16,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Action;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
@@ -187,6 +176,9 @@ public class DesignConnexion extends Applet implements Observateur {
         validation.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                verification[0] = gestionnaire.verifierPseudo(contenuPseudo.getText());
+                verification[1] = gestionnaire.verifierPassword(contenuPassword.getText());
+                
                 for (int i = 0; i < verification.length; i++) {
                     if (verification[i] == false) {
                         JOptionPane error = new JOptionPane();
