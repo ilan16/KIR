@@ -1,4 +1,4 @@
-﻿int toto = COMPLETER_1 ;
+﻿ int toto = COMPLETER_1 ;
 System.out.println("toto: " COMPLETER_2);
 
 int titi=4;
