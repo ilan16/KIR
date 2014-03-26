@@ -13,11 +13,20 @@ public class DOA {
     private java.sql.Statement dbStatement = null;
 
     public DOA() {
+        //pour windows
         //this.URL = "jdbc:mysql://localhost:3306/bdd_kir?zeroDateTimeBehavior=convertToNull";
+        
+         //pour mac
         this.URL = "jdbc:mysql://localhost:8889/bdd_kir?zeroDateTimeBehavior=convertToNull";
+        
+        //pour tout le monde
         this.user =  "root" ;
-        this.password = "root";
+        
+        //pour windows
        // this.password = "";
+        
+        //pour mac
+        this.password = "root";
     }
 
     public String getURL() {
