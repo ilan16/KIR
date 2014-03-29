@@ -14,5 +14,6 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
         Fenetre f = new Fenetre("K.I.R");
+       
     }
 }

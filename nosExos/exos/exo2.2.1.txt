@@ -1,1 +1,27 @@
-Ce niveau sera disponible le 31/03/2014
+/***** COMPLETER LE PROGRAMME : *****/
+
+public class Exercice2.2.1 {
+
+
+    public static void main(String[] args) {
+
+	int toto=5;
+        int tata=3;
+        if (toto COMPLETER_1 10){
+            System.out.println("test 1");
+        }COMPLETER_2 if (toto==5){
+            System.out.println("test 2");
+        }
+        
+        if (tata>toto){
+            System.out.println("COMPLETER_3");
+        }else {
+            System.out.println("COMPLETER_4");
+        }
+        
+    }
+}
+
+AFFICHE
+test 1
+test 3
