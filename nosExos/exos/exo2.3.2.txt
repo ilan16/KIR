@@ -1,0 +1,32 @@
+﻿/***** TROUVE LES ERREURS : *****/
+public class Exercice2.3.1 {
+
+
+    public static void main(String[] args) {
+        int a=5;
+        int b=6; 
+        if (a>b){
+            a++;
+            b--;
+        }
+        if (a==6){
+            System.out.println("test1");
+            int azerty=7;
+            if (azerty==8)
+            azerty++;
+            System.out.println(azerty);
+        }
+        System.out.println(a);
+        System.out.println(b);
+        String c="toto";
+        String d="toto";
+        if (!c.equals(d)){
+                System.out.println("test2");
+        }
+    }
+}
+
+affiche
+test1
+6
+5

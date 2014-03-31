@@ -1,0 +1,9 @@
+/***** AFFICHER LES RESULTATS DU PROGRAMME : *****/
+
+int x = 0;
+
+do{
+	System.out.println("valeur de x : " + x );
+	x++;
+}while( x < 10 );
+System.out.println(x);

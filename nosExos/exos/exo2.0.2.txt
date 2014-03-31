@@ -1,0 +1,10 @@
+creer un programme qui contient 2 entier 
+le premier egal a 18
+le deuxieme egal a 7
+faire un test qui permet d'afficher les plus grand des nombre et qui affiche :
+"le plus grand des nombre est 18"
+faire la divition entre les deux nombre 
+tester si la division et plus grande que 2 alors afficher 
+"la division est plus grande que deux "
+aussi non afficher 
+"ta perdu"
